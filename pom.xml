@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sirika.httpclienthelpers</groupId>
 	<artifactId>httpclienthelpers-parent</artifactId>
 	<packaging>pom</packaging>
 	<name>HttpClient Helpers Parent</name>
-	<version>0.1-SNAPSHOT</version>
+	<version>0.1</version>
 	<url>http://opensource.sirika.com/httpclienthelpers</url>
 	<inceptionYear>2009</inceptionYear>
 	<prerequisites>
@@ -21,12 +20,12 @@
 
 	<scm>
 		<connection>
-			scm:svn:http://www.sirika.com/svn/funala/httpclienthelpers/trunk
+			scm:svn:http://www.sirika.com/svn/funala/httpclienthelpers/tags/httpclienthelpers-parent-0.1
 		</connection>
 		<developerConnection>
-			scm:svn:http://www.sirika.com/svn/funala/httpclienthelpers/trunk
+			scm:svn:http://www.sirika.com/svn/funala/httpclienthelpers/tags/httpclienthelpers-parent-0.1
 		</developerConnection>
-		<url>http://www.sirika.com/svn/funala/httpclienthelpers/trunk</url>
+		<url>http://www.sirika.com/svn/funala/httpclienthelpers/tags/httpclienthelpers-parent-0.1</url>
 	</scm>
 
 	<licenses>

@@ -3,25 +3,25 @@
 	<parent>
 		<artifactId>httpclienthelpers-parent</artifactId>
 		<groupId>com.sirika.httpclienthelpers</groupId>
-		<version>0.1-SNAPSHOT</version>
+		<version>0.1</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sirika.httpclienthelpers</groupId>
 	<artifactId>com.sirika.httpclienthelpers-assembly</artifactId>
 	<packaging>pom</packaging>
 	<name>HttpClient Helpers Assembly</name>
-	<version>0.1-SNAPSHOT</version>
+	<version>0.1</version>
 	<dependencies>
 		<dependency>
 			<groupId>com.sirika.httpclienthelpers</groupId>
 			<artifactId>httpclienthelpers-core</artifactId>
-			<version>0.1-SNAPSHOT</version>
+			<version>0.1</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.sirika.httpclienthelpers</groupId>
 			<artifactId>httpclienthelpers-springsupport</artifactId>
-			<version>0.1-SNAPSHOT</version>
+			<version>0.1</version>
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>
