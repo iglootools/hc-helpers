@@ -1,0 +1,128 @@
+<!--
+
+    PyMager Java REST Client
+    Copyright (C) 2008 Sami Dalouche
+
+    This file is part of PyMager Java REST Client.
+
+    PyMager Java REST Client is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    PyMager Java REST Client is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with PyMager Java REST Client.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<assembly>
+	<id>all</id>
+	<formats>
+		<format>zip</format>
+		<format>tar.gz</format>
+		<format>tar.bz2</format>
+	</formats>
+	<dependencySets>
+		<dependencySet>
+			<useStrictFiltering>false</useStrictFiltering>
+			<outputDirectory>all</outputDirectory>
+		</dependencySet>
+		<dependencySet>
+			<outputDirectory>core-nospring</outputDirectory>
+			<useStrictFiltering>true</useStrictFiltering>
+			<useTransitiveFiltering>true</useTransitiveFiltering>
+			<includes>
+				<include>com.sirika.httpclienthelpers:httpclienthelpers-core</include>
+			</includes>
+		</dependencySet>
+	</dependencySets>
+	<!-- Doesnt seem to work..
+	<moduleSets>
+		<moduleSet>
+			<includeSubModules>false</includeSubModules>
+			<sources>
+				<outputDirectoryMapping>${module.basedir.name}</outputDirectoryMapping>
+				<excludeSubModuleDirectories>false</excludeSubModuleDirectories>
+				<outputDirectory>src</outputDirectory>
+				<fileSets>
+					<fileSet>
+						<directory>/</directory>
+						<excludes>
+							<exclude>**/target</exclude>	
+						</excludes>
+					</fileSet>
+				</fileSets>
+			</sources>
+		</moduleSet>
+	</moduleSets> -->
+	
+	<fileSets>
+		<fileSet>
+			<directory>src/main/resources</directory>
+			<outputDirectory></outputDirectory>
+			<includes>
+				<include>README*</include>
+				<include>CHANGELOG*</include>
+				<include>COPYING*</include>
+				<include>CREDITS*</include>
+			</includes>
+		</fileSet>
+
+		<!-- Include the website in the assembly -->
+		<fileSet>
+			<directory>../target/site</directory>
+			<outputDirectory>docs</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>../httpclienthelpers-core/target/site</directory>
+			<outputDirectory>docs/httpclienthelpers-core</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>../httpclienthelpers-springsupport/target/site</directory>
+			<outputDirectory>docs/httpclienthelpers-springsupport</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>../assembly/target/site</directory>
+			<outputDirectory>docs/httpclienthelpers-assembly</outputDirectory>
+		</fileSet>
+
+
+		<!-- Include the source code in the assembly -->
+		<fileSet>
+			<directory>../</directory>
+			<outputDirectory>src/</outputDirectory>
+			<includes>
+				<include>pom.xml</include>
+				<include>src/</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>../core</directory>
+			<outputDirectory>src/core</outputDirectory>
+			<includes>
+				<include>pom.xml</include>
+				<include>src/</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>../springsupport</directory>
+			<outputDirectory>src/springsupport</outputDirectory>
+			<includes>
+				<include>pom.xml</include>
+				<include>src/</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>../assembly</directory>
+			<outputDirectory>src/assembly</outputDirectory>
+			<includes>
+				<include>pom.xml</include>
+				<include>src/</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+</assembly>
