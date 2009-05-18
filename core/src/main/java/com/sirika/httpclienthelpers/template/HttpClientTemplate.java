@@ -70,13 +70,10 @@ public class HttpClientTemplate {
      * @param httpErrorHandlers
      */
     public void executeWithoutResult(HttpUriRequest httpUriRequest, Iterable<HttpErrorHandler> httpErrorHandlers) {
-	this.execute(httpUriRequest, new HttpResponseCallback() {
-	    public Object doWithHttpResponse(HttpResponse httpResponse) throws Exception {
-		return null;
-	    }
-	    
-	}, httpErrorHandlers, true);
+	this.execute(httpUriRequest, new DoNothingHttpResponseCallback(), httpErrorHandlers, consumeResult());
     }
+
+
     
     
     /**
@@ -88,7 +85,7 @@ public class HttpClientTemplate {
      * @return
      */
     public Object execute(HttpUriRequest httpUriRequest, HttpResponseCallback httpResponseCallback) {
-	return this.execute(httpUriRequest, httpResponseCallback, noErrorHandler(), false);
+	return this.execute(httpUriRequest, httpResponseCallback, noErrorHandler(), doNotConsumeResult());
     }
     
     /**
@@ -156,4 +153,12 @@ public class HttpClientTemplate {
     private Iterable<HttpErrorHandler> noErrorHandler() {
 	return Iterables.emptyIterable();
     }
+    
+    private boolean consumeResult() {
+	return true;
+    }
+    private boolean doNotConsumeResult() {
+	return false;
+    }
+
 }
