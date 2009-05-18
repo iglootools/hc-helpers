@@ -3,13 +3,13 @@
 	<parent>
 		<artifactId>httpclienthelpers-parent</artifactId>
 		<groupId>com.sirika.httpclienthelpers</groupId>
-		<version>0.3-SNAPSHOT</version>
+		<version>0.2-SNAPSHOT</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sirika.httpclienthelpers</groupId>
 	<artifactId>httpclienthelpers-core</artifactId>
 	<name>HttpClient Helpers core</name>
-	<version>0.3-SNAPSHOT</version>
+	<version>0.2-SNAPSHOT</version>
 	<properties>
 	</properties>
 	<dependencies>

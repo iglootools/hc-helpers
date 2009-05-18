@@ -5,7 +5,7 @@
 	<artifactId>httpclienthelpers-parent</artifactId>
 	<packaging>pom</packaging>
 	<name>HttpClient Helpers Parent</name>
-	<version>0.3-SNAPSHOT</version>
+	<version>0.2-SNAPSHOT</version>
 	<url>http://opensource.sirika.com/httpclienthelpers</url>
 	<inceptionYear>2009</inceptionYear>
 	<prerequisites>
