@@ -31,6 +31,9 @@
       <action dev="sdalouche" type="add">
       	Added helper classes to enable GZIP compression support
       </action>
+      <action dev="sdalouche" type="add">
+      	Added generic HttpInputStreamSource helper class
+      </action>
     </release>
   </body>
 </document>
