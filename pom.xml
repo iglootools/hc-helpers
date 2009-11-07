@@ -4,9 +4,10 @@
 	<groupId>com.sirika.httpclienthelpers</groupId>
 	<artifactId>httpclienthelpers-parent</artifactId>
 	<packaging>pom</packaging>
-	<name>HttpClient Helpers Parent</name>
+	<name>HttpComponents Helpers Parent</name>
+	<description>HttpComponents helpers</description>
 	<version>0.3-SNAPSHOT</version>
-	<url>http://opensource.sirika.com/httpclienthelpers</url>
+	<url>http://developers.sirika.com/httpclienthelpers</url>
 	<inceptionYear>2009</inceptionYear>
 	<prerequisites>
 		<maven>2.1.0</maven>
@@ -20,24 +21,25 @@
 
 	<scm>
 		<connection>
-			scm:svn:http://www.sirika.com/svn/funala/httpclienthelpers/trunk
+			git://github.com/samokk/httpclienthelpers.git
 		</connection>
 		<developerConnection>
-			scm:svn:http://www.sirika.com/svn/funala/httpclienthelpers/trunk
+			git@github.com:samokk/httpclienthelpers.git
 		</developerConnection>
-		<url>http://www.sirika.com/svn/funala/httpclienthelpers/trunk</url>
+		<url>http://github.com/samokk/httpclienthelpers</url>
 	</scm>
 
 	<licenses>
 		<license>
 			<name>Apache License 2.0</name>
 			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+			<distribution>repo</distribution>
 		</license>
 	</licenses>
 
 	<issueManagement>
-		<system />
-		<url />
+		<system>Launchpad</system
+		<url>https://launchpad.net/httpclienthelpers</url>
 	</issueManagement>
 
 	<ciManagement>
@@ -45,28 +47,11 @@
 		<notifiers>
 			<notifier>
 				<type>mail</type>
-				<configuration>
-					<address>sami.dalouche@gmail.com</address>
-				</configuration>
 			</notifier>
 		</notifiers>
 	</ciManagement>
-	<distributionManagement>
-		<repository>
-			<id>sirika-releases</id>
-			<name>Sirika Releases Repository</name>
-			<url>scp://sirika.com/srv/http/sirika.com/maven2/releases</url>
-		</repository>
-		<snapshotRepository>
-			<id>sirika-snapshots</id>
-			<name>Sirika Snapshots Repository</name>
-			<url>scp://sirika.com/srv/http/sirika.com/maven2/snapshots</url>
-		</snapshotRepository>
-		<site>
-			<id>sirika-site</id>
-			<url>scp://sirika.com/srv/http/sirika.com/projects/httpclienthelpers</url>
-		</site>
-	</distributionManagement>
+
+	
 	<developers>
 		<developer>
 			<id>sdalouche</id>
@@ -78,10 +63,7 @@
 			<timezone>-5</timezone>
 		</developer>
 	</developers>
-	<organization>
-		<name>Sirika</name>
-		<url>http://www.sirika.com</url>
-	</organization>
+	
 	<modules>
 		<module>core</module>
 		<module>springsupport</module>
@@ -255,22 +237,38 @@
 		</plugins>
 	</build>
 
+	<distributionManagement>
+		<repository>
+			<id>sirika-repo-releases</id>
+			<name>Sirika Releases Repository</name>
+			<url>scp://developers.sirika.com/srv/http/developers.sirika.com/maven2/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>sirika-repo-snapshots</id>
+			<name>Sirika Snapshots Repository</name>
+			<url>scp://developers.sirika.com/srv/http/developers.sirika.com/maven2/snapshots</url>
+		</snapshotRepository>
+		<site>
+			<id>sirika-site</id>
+			<url>scp://developers.sirika.com/srv/http/developers.sirika.com/httpclienthelpers</url>
+		</site>
+	</distributionManagement>
 
 	<repositories>
 
 		<repository>
-			<id>sirika-releases</id>
+			<id>sirika-repo-releases</id>
 			<name>Sirika Releases Repository</name>
-			<url>http://www.sirika.com/maven2/releases</url>
+			<url>http://developers.sirika.com/maven2/releases</url>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
 
 		<repository>
-			<id>sirika-snapshots</id>
+			<id>sirika-repo-snapshots</id>
 			<name>Sirika Snapshots Repository</name>
-			<url>http://www.sirika.com/maven2/snapshots</url>
+			<url>http://developers.sirika.com/maven2/snapshots</url>
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
