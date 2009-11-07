@@ -21,10 +21,10 @@
 
 	<scm>
 		<connection>
-			git://github.com/samokk/httpclienthelpers.git
+			scm:git:git://github.com/samokk/httpclienthelpers.git
 		</connection>
 		<developerConnection>
-			git@github.com:samokk/httpclienthelpers.git
+			scm:git:git@github.com:samokk/httpclienthelpers.git
 		</developerConnection>
 		<url>http://github.com/samokk/httpclienthelpers</url>
 	</scm>
@@ -73,7 +73,7 @@
 
 	<profiles>
 		<profile>
-			<id>release</id>
+			<id>all</id>
 			<build>
 				<plugins>
 					<plugin>
@@ -96,24 +96,6 @@
 								<id>attach-javadocs</id>
 								<goals>
 									<goal>jar</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>com.google.code.maven-license-plugin</groupId>
-						<artifactId>maven-license-plugin</artifactId>
-						<version>1.4.0</version>
-						<configuration>
-							<header>src/etc/header.txt</header>
-							<includes>
-								<include>**/src/**</include>
-							</includes>
-						</configuration>
-						<executions>
-							<execution>
-								<goals>
-									<goal>check</goal>
 								</goals>
 							</execution>
 						</executions>
@@ -154,22 +136,34 @@
 					<plugin>
 						<artifactId>maven-surefire-report-plugin</artifactId>
 					</plugin>
-					<plugin>
-						<artifactId>maven-pmd-plugin</artifactId>
-						<configuration>
-							<targetJdk>${compileSource}</targetJdk>
-						</configuration>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-checkstyle-plugin</artifactId>
-					</plugin>
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>cobertura-maven-plugin</artifactId>
-					</plugin>
 				</plugins>
 			</reporting>
+		</profile>
+
+		<profile>
+			<id>release</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.google.code.maven-license-plugin</groupId>
+						<artifactId>maven-license-plugin</artifactId>
+						<version>1.4.0</version>
+						<configuration>
+							<header>src/etc/header.txt</header>
+							<includes>
+								<include>**/src/**</include>
+							</includes>
+						</configuration>
+						<executions>
+							<execution>
+								<goals>
+									<goal>check</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
 		</profile>
 	</profiles>
 
