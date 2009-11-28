@@ -18,6 +18,10 @@
 		<author email="sami.dalouche@gmail.com">Sami Dalouche</author>
 	</properties>
 	<body>
+		<release version="0.4" date="2009-11-28" description="Minor tweaks">
+			<action dev="sdalouche" type="fix">Changed maven profile name so that we build assembly with -Pall profile</action>
+		</release>
+		
 		<release version="0.1" date="2009-05-16"
 			description="First standalone version of this library">
 			<action dev="sdalouche" type="add">
