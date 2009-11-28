@@ -6,7 +6,7 @@
 	<packaging>pom</packaging>
 	<name>HttpComponents Helpers Parent</name>
 	<description>HttpComponents helpers</description>
-	<version>0.4-SNAPSHOT</version>
+	<version>0.4</version>
 	<url>http://developers.sirika.com/httpclienthelpers</url>
 	<inceptionYear>2009</inceptionYear>
 	<prerequisites>
