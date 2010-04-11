@@ -24,7 +24,7 @@ import org.apache.http.HttpResponse;
  * @see HttpClientTemplate
  * 
  * @author Sami Dalouche (sami.dalouche@gmail.com)
- *
+ * 
  */
 public interface HttpResponseCallback {
     /**

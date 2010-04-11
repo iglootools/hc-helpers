@@ -25,11 +25,11 @@ import java.util.zip.GZIPInputStream;
 import org.apache.http.HttpEntity;
 import org.apache.http.entity.HttpEntityWrapper;
 
-/**t 
- * {@link HttpEntityWrapper} that adds GZIP decompressoin support
+/**
+ * t {@link HttpEntityWrapper} that adds GZIP decompressoin support
  * 
  * @author Sami Dalouche (sami.dalouche@gmail.com)
- *
+ * 
  */
 class GzipDecompressingEntity extends HttpEntityWrapper {
 
@@ -38,8 +38,7 @@ class GzipDecompressingEntity extends HttpEntityWrapper {
     }
 
     @Override
-    public InputStream getContent()
-        throws IOException, IllegalStateException {
+    public InputStream getContent() throws IOException, IllegalStateException {
 
         // the wrapped entity's getContent() decides about repeatability
         InputStream wrappedin = wrappedEntity.getContent();

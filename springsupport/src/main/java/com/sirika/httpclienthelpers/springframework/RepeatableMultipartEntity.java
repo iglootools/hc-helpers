@@ -21,16 +21,15 @@ package com.sirika.httpclienthelpers.springframework;
 import org.apache.http.entity.mime.MultipartEntity;
 
 /**
- * A {@link MultipartEntity} that is repeatable.
- * It is meant to be used with SourceBody's that are repeatable, such as
- * {@link InputStreamSourceBody}
+ * A {@link MultipartEntity} that is repeatable. It is meant to be used with
+ * SourceBody's that are repeatable, such as {@link InputStreamSourceBody}
  * 
  * @author Sami Dalouche (sami.dalouche@gmail.com)
- *
+ * 
  */
 public final class RepeatableMultipartEntity extends MultipartEntity {
     @Override
     public boolean isRepeatable() {
-	return true;
+        return true;
     }
 }

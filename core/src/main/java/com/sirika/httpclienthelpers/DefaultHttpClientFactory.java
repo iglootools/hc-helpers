@@ -38,55 +38,68 @@ import com.sirika.httpclienthelpers.gzip.GzipResponseInterceptor;
  * Helper class to ease the creation of {@link HttpClient}
  * 
  * @author Sami Dalouche (sami.dalouche@gmail.com)
- *
+ * 
  */
 public class DefaultHttpClientFactory {
     public static DefaultHttpClient defaultHttpClient() {
-	return new DefaultHttpClient(threadSafeClientConnManager(defaultHttpParams()), defaultHttpParams());
-    }
-    
-    public static DefaultHttpClient httpClient(Map<AuthScope, Credentials> credentials, Map<String,Object> params, CookieStore cookieStore, boolean shouldUseGzipCompression) {
-	DefaultHttpClient httpClient = new DefaultHttpClient(threadSafeClientConnManager(httpParams(params)), httpParams(params));
-	for(Entry<AuthScope, Credentials> e : credentials.entrySet()) {
-	    httpClient.getCredentialsProvider().setCredentials(e.getKey(), e.getValue());    
-	}
-	
-	if(cookieStore != null) {
-	    httpClient.setCookieStore(cookieStore);
-	}
-	
-	if(shouldUseGzipCompression) {
-	    handleGzipContentCompression(httpClient);
-
-	}
-	return httpClient;
-    }
-    
-    private static void handleGzipContentCompression(DefaultHttpClient httpClient) {
-	httpClient.addRequestInterceptor(new GzipRequestInterceptor());
-	httpClient.addResponseInterceptor(new GzipResponseInterceptor());
+        return new DefaultHttpClient(
+                threadSafeClientConnManager(defaultHttpParams()),
+                defaultHttpParams());
     }
 
-    public static ThreadSafeClientConnManager threadSafeClientConnManager(HttpParams httpParams) {
-	return new ThreadSafeClientConnManager(httpParams, defaultSchemeRegistry());
+    public static DefaultHttpClient httpClient(
+            Map<AuthScope, Credentials> credentials,
+            Map<String, Object> params, CookieStore cookieStore,
+            boolean shouldUseGzipCompression) {
+        DefaultHttpClient httpClient = new DefaultHttpClient(
+                threadSafeClientConnManager(httpParams(params)),
+                httpParams(params));
+        for (Entry<AuthScope, Credentials> e : credentials.entrySet()) {
+            httpClient.getCredentialsProvider().setCredentials(e.getKey(),
+                    e.getValue());
+        }
+
+        if (cookieStore != null) {
+            httpClient.setCookieStore(cookieStore);
+        }
+
+        if (shouldUseGzipCompression) {
+            handleGzipContentCompression(httpClient);
+
+        }
+        return httpClient;
+    }
+
+    private static void handleGzipContentCompression(
+            DefaultHttpClient httpClient) {
+        httpClient.addRequestInterceptor(new GzipRequestInterceptor());
+        httpClient.addResponseInterceptor(new GzipResponseInterceptor());
+    }
+
+    public static ThreadSafeClientConnManager threadSafeClientConnManager(
+            HttpParams httpParams) {
+        return new ThreadSafeClientConnManager(httpParams,
+                defaultSchemeRegistry());
     }
 
     public static SchemeRegistry defaultSchemeRegistry() {
-	SchemeRegistry schemeRegistry = new SchemeRegistry();
-        schemeRegistry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
-        schemeRegistry.register(new Scheme("https", SSLSocketFactory.getSocketFactory(), 443));
+        SchemeRegistry schemeRegistry = new SchemeRegistry();
+        schemeRegistry.register(new Scheme("http", PlainSocketFactory
+                .getSocketFactory(), 80));
+        schemeRegistry.register(new Scheme("https", SSLSocketFactory
+                .getSocketFactory(), 443));
         return schemeRegistry;
     }
 
-    public static BasicHttpParams httpParams(Map<String,Object> params) {
-	BasicHttpParams httpParams =  new BasicHttpParams();
-	for(Entry<String, Object> e : params.entrySet()) {
-	    httpParams.setParameter(e.getKey(), e.getValue());
-	}
-	return httpParams;
+    public static BasicHttpParams httpParams(Map<String, Object> params) {
+        BasicHttpParams httpParams = new BasicHttpParams();
+        for (Entry<String, Object> e : params.entrySet()) {
+            httpParams.setParameter(e.getKey(), e.getValue());
+        }
+        return httpParams;
     }
-    
+
     public static BasicHttpParams defaultHttpParams() {
-	return new BasicHttpParams();
+        return new BasicHttpParams();
     }
 }

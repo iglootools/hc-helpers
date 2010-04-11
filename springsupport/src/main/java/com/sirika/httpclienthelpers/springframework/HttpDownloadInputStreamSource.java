@@ -33,48 +33,56 @@ import com.sirika.httpclienthelpers.template.HttpClientTemplate;
 import com.sirika.httpclienthelpers.template.HttpErrorHandler;
 import com.sirika.httpclienthelpers.template.HttpResponseCallback;
 
-public class HttpDownloadInputStreamSource implements InputStreamSource{
-    private final static Logger logger = LoggerFactory.getLogger(HttpDownloadInputStreamSource.class);
+public class HttpDownloadInputStreamSource implements InputStreamSource {
+    private final static Logger logger = LoggerFactory
+            .getLogger(HttpDownloadInputStreamSource.class);
     private HttpClientTemplate httpClientTemplate;
     private HttpGet httpGet;
     private Iterable<HttpErrorHandler> httpErrorHandlers;
-    
-    public HttpDownloadInputStreamSource(HttpClientTemplate httpClientTemplate, HttpGet httpGet) {
-	this(httpClientTemplate, httpGet, noErrorHandler());
+
+    public HttpDownloadInputStreamSource(HttpClientTemplate httpClientTemplate,
+            HttpGet httpGet) {
+        this(httpClientTemplate, httpGet, noErrorHandler());
     }
-    
-    public HttpDownloadInputStreamSource(HttpClientTemplate httpClientTemplate, HttpGet httpGet, Iterable<HttpErrorHandler> httpErrorHandlers) {
-	super();
-	this.httpClientTemplate = httpClientTemplate;
-	this.httpGet = httpGet;
-	this.httpErrorHandlers = httpErrorHandlers;
+
+    public HttpDownloadInputStreamSource(HttpClientTemplate httpClientTemplate,
+            HttpGet httpGet, Iterable<HttpErrorHandler> httpErrorHandlers) {
+        super();
+        this.httpClientTemplate = httpClientTemplate;
+        this.httpGet = httpGet;
+        this.httpErrorHandlers = httpErrorHandlers;
     }
 
     private static Iterable<HttpErrorHandler> noErrorHandler() {
-	return Iterables.emptyIterable();
+        return Iterables.emptyIterable();
     }
 
     /**
-     * @throws IOException if the underlying HTTP connection fails
-     * @throws RuntimeException depending on the miscellaneous exception handlers
+     * @throws IOException
+     *             if the underlying HTTP connection fails
+     * @throws RuntimeException
+     *             depending on the miscellaneous exception handlers
      */
     public InputStream getInputStream() throws IOException, RuntimeException {
-	logger.debug("Generating InputStream");
-	
-	return (InputStream) this.httpClientTemplate.execute(this.httpGet, new HttpResponseCallback() {
-	    public Object doWithHttpResponse(HttpResponse httpResponse) throws Exception {
-		return generateInputStream(httpResponse.getEntity());
-	    }    
-	}, this.httpErrorHandlers);
+        logger.debug("Generating InputStream");
+
+        return (InputStream) this.httpClientTemplate.execute(this.httpGet,
+                new HttpResponseCallback() {
+                    public Object doWithHttpResponse(HttpResponse httpResponse)
+                            throws Exception {
+                        return generateInputStream(httpResponse.getEntity());
+                    }
+                }, this.httpErrorHandlers);
 
     }
 
-    private InputStream generateInputStream(HttpEntity entity) throws IOException {
-	if(entity != null) {
-	    return entity.getContent();
-	} else {
-	    return null;
-	}
+    private InputStream generateInputStream(HttpEntity entity)
+            throws IOException {
+        if (entity != null) {
+            return entity.getContent();
+        } else {
+            return null;
+        }
     }
-    
+
 }

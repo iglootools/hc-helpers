@@ -25,27 +25,31 @@ import org.apache.http.entity.mime.content.AbstractContentBody;
 import org.apache.james.mime4j.message.BinaryBody;
 import org.springframework.core.io.InputStreamSource;
 
-public class InputStreamSourceBody extends AbstractContentBody implements BinaryBody {
+public class InputStreamSourceBody extends AbstractContentBody implements
+        BinaryBody {
     private final InputStreamSource inputStreamSource;
     private final String filename;
-    
-    public InputStreamSourceBody(final InputStreamSource inputStreamSource, final String mimeType, final String filename) {
+
+    public InputStreamSourceBody(final InputStreamSource inputStreamSource,
+            final String mimeType, final String filename) {
         super(mimeType);
         if (inputStreamSource == null) {
-            throw new IllegalArgumentException("Input stream source may not be null");
+            throw new IllegalArgumentException(
+                    "Input stream source may not be null");
         }
         this.inputStreamSource = inputStreamSource;
         this.filename = filename;
     }
-    
-    public InputStreamSourceBody(final InputStreamSource inputStreamSource, final String filename) {
+
+    public InputStreamSourceBody(final InputStreamSource inputStreamSource,
+            final String filename) {
         this(inputStreamSource, "application/octet-stream", filename);
     }
-    
+
     public InputStream getInputStream() throws IOException {
         return this.inputStreamSource.getInputStream();
     }
-    
+
     public void writeTo(final OutputStream out, int mode) throws IOException {
         if (out == null) {
             throw new IllegalArgumentException("Output stream may not be null");
@@ -59,7 +63,7 @@ public class InputStreamSourceBody extends AbstractContentBody implements Binary
             IOUtils.closeQuietly(in);
         }
     }
-    
+
     public String getTransferEncoding() {
         return MIME.ENC_BINARY;
     }
@@ -71,7 +75,7 @@ public class InputStreamSourceBody extends AbstractContentBody implements Binary
     public long getContentLength() {
         return -1;
     }
-    
+
     public String getFilename() {
         return this.filename;
     }

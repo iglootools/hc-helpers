@@ -28,51 +28,56 @@ import org.apache.http.impl.client.BasicCookieStore;
 import org.springframework.beans.factory.FactoryBean;
 
 import com.sirika.httpclienthelpers.DefaultHttpClientFactory;
+
 /**
- * Spring {@link FactoryBean} helper that eases the creation and configuration of HttpComponents' {@link HttpClient}.
- * Configuring HttpClient authentication, number of connections, ... cannot be done declaratively using HttpClient's 
- * native mechanisms. {@link HttpClientFactoryBean}'s goal is to expose these settings so they can be changed declaratively 
- * using Spring.
+ * Spring {@link FactoryBean} helper that eases the creation and configuration
+ * of HttpComponents' {@link HttpClient}. Configuring HttpClient authentication,
+ * number of connections, ... cannot be done declaratively using HttpClient's
+ * native mechanisms. {@link HttpClientFactoryBean}'s goal is to expose these
+ * settings so they can be changed declaratively using Spring.
  * 
  * 
  * @author Sami Dalouche (sami.dalouche@gmail.com)
- *
+ * 
  */
 public class HttpClientFactoryBean implements FactoryBean {
     private Map<AuthScope, Credentials> credentials = new HashMap<AuthScope, Credentials>();
-    private Map<String,Object> params = new HashMap<String, Object>();
+    private Map<String, Object> params = new HashMap<String, Object>();
     private CookieStore cookieStore = null;
     private boolean shouldUseCookieStore = false;
     private boolean shouldUseGzipContentcompression = true;
     private Integer maxTotalConnections = null;
     private Integer defaultMaxConnectionsPerRoute = null;
-    
+
     public Object getObject() throws Exception {
-	if(maxTotalConnections != null) {
-	    params.put(AllClientPNames.MAX_TOTAL_CONNECTIONS, maxTotalConnections);
-	}
-	if(defaultMaxConnectionsPerRoute != null) {
-	    params.put(AllClientPNames.MAX_CONNECTIONS_PER_ROUTE, new ConnPerRouteBean(defaultMaxConnectionsPerRoute));
-	}
-	
-	return DefaultHttpClientFactory.httpClient(credentials, params, cookieStore(), shouldUseGzipContentcompression);
+        if (maxTotalConnections != null) {
+            params.put(AllClientPNames.MAX_TOTAL_CONNECTIONS,
+                    maxTotalConnections);
+        }
+        if (defaultMaxConnectionsPerRoute != null) {
+            params.put(AllClientPNames.MAX_CONNECTIONS_PER_ROUTE,
+                    new ConnPerRouteBean(defaultMaxConnectionsPerRoute));
+        }
+
+        return DefaultHttpClientFactory.httpClient(credentials, params,
+                cookieStore(), shouldUseGzipContentcompression);
     }
 
     private CookieStore cookieStore() {
-	CookieStore cookieStoreToUse = null;
-	if(shouldUseCookieStore == true) {
-	    cookieStoreToUse = cookieStore == null? new BasicCookieStore() : cookieStore;
-	}
-	return cookieStoreToUse;
+        CookieStore cookieStoreToUse = null;
+        if (shouldUseCookieStore == true) {
+            cookieStoreToUse = cookieStore == null ? new BasicCookieStore()
+                    : cookieStore;
+        }
+        return cookieStoreToUse;
     }
 
-  
     public Class getObjectType() {
-	return HttpClient.class;
+        return HttpClient.class;
     }
 
     public boolean isSingleton() {
-	return true;
+        return true;
     }
 
     public void setCredentials(Map<AuthScope, Credentials> credentials) {
@@ -80,7 +85,7 @@ public class HttpClientFactoryBean implements FactoryBean {
     }
 
     public void setCookieStore(CookieStore cookieStore) {
-	this.shouldUseCookieStore = true;
+        this.shouldUseCookieStore = true;
         this.cookieStore = cookieStore;
     }
 
@@ -88,7 +93,8 @@ public class HttpClientFactoryBean implements FactoryBean {
         this.shouldUseCookieStore = shouldUseCookieStore;
     }
 
-    public void setShouldUseGzipContentcompression(boolean shouldUseGzipContentcompression) {
+    public void setShouldUseGzipContentcompression(
+            boolean shouldUseGzipContentcompression) {
         this.shouldUseGzipContentcompression = shouldUseGzipContentcompression;
     }
 
@@ -106,7 +112,7 @@ public class HttpClientFactoryBean implements FactoryBean {
     }
 
     public void setDefaultMaxConnectionsPerRoute(
-    	Integer defaultMaxConnectionsPerRoute) {
+            Integer defaultMaxConnectionsPerRoute) {
         this.defaultMaxConnectionsPerRoute = defaultMaxConnectionsPerRoute;
     }
 

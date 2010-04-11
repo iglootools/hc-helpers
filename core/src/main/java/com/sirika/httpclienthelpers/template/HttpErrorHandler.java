@@ -22,7 +22,7 @@ import org.apache.http.StatusLine;
  * Reacts when there is a specific (set of) Http Errors
  * 
  * @author Sami Dalouche (sami.dalouche@gmail.com)
- *
+ * 
  */
 public interface HttpErrorHandler {
     /**
@@ -31,9 +31,10 @@ public interface HttpErrorHandler {
      * @return whether this matcher applis to the current Http error code
      */
     boolean apppliesTo(StatusLine statusLine);
-    
+
     /**
      * perform the action of the handler
+     * 
      * @param response
      * @throws Exception
      */
