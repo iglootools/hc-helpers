@@ -28,25 +28,26 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.InputStreamSource;
 
-import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 import com.sirika.httpclienthelpers.template.HttpClientTemplate;
 import com.sirika.httpclienthelpers.template.HttpErrorHandler;
 import com.sirika.httpclienthelpers.template.HttpResponseCallback;
 
-public class HttpDownloadInputStreamSource implements InputStreamSource {
+public final class HttpDownloadInputStreamSource implements InputStreamSource {
     private final static Logger logger = LoggerFactory
             .getLogger(HttpDownloadInputStreamSource.class);
     private HttpClientTemplate httpClientTemplate;
     private HttpGet httpGet;
     private Iterable<HttpErrorHandler> httpErrorHandlers;
 
-    public HttpDownloadInputStreamSource(HttpClientTemplate httpClientTemplate,
-            HttpGet httpGet) {
+    public HttpDownloadInputStreamSource(HttpClientTemplate httpClientTemplate, HttpGet httpGet) {
         this(httpClientTemplate, httpGet, noErrorHandler());
     }
 
-    public HttpDownloadInputStreamSource(HttpClientTemplate httpClientTemplate,
-            HttpGet httpGet, Iterable<HttpErrorHandler> httpErrorHandlers) {
+    public HttpDownloadInputStreamSource(
+            HttpClientTemplate httpClientTemplate,
+            HttpGet httpGet, 
+            Iterable<HttpErrorHandler> httpErrorHandlers) {
         super();
         this.httpClientTemplate = httpClientTemplate;
         this.httpGet = httpGet;
@@ -54,7 +55,7 @@ public class HttpDownloadInputStreamSource implements InputStreamSource {
     }
 
     private static Iterable<HttpErrorHandler> noErrorHandler() {
-        return Iterables.emptyIterable();
+        return Lists.newArrayList();
     }
 
     /**

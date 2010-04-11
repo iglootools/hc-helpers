@@ -38,7 +38,7 @@ import com.google.common.collect.Lists;
  * @author Sami Dalouche (sami.dalouche@gmail.com)
  * 
  */
-public class HttpClientTemplate {
+public final class HttpClientTemplate {
     private final static Logger logger = LoggerFactory
             .getLogger(HttpClientTemplate.class);
     private HttpClient httpClient;
@@ -178,7 +178,7 @@ public class HttpClientTemplate {
     }
 
     private Iterable<HttpErrorHandler> noErrorHandler() {
-        return Iterables.emptyIterable();
+        return Lists.newArrayList();
     }
 
     private boolean consumeResult() {

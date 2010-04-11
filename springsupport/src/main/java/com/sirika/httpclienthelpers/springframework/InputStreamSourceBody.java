@@ -22,11 +22,9 @@ import java.io.OutputStream;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.entity.mime.MIME;
 import org.apache.http.entity.mime.content.AbstractContentBody;
-import org.apache.james.mime4j.message.BinaryBody;
 import org.springframework.core.io.InputStreamSource;
 
-public class InputStreamSourceBody extends AbstractContentBody implements
-        BinaryBody {
+public final class InputStreamSourceBody extends AbstractContentBody {
     private final InputStreamSource inputStreamSource;
     private final String filename;
 
@@ -50,7 +48,8 @@ public class InputStreamSourceBody extends AbstractContentBody implements
         return this.inputStreamSource.getInputStream();
     }
 
-    public void writeTo(final OutputStream out, int mode) throws IOException {
+    @Override
+    public void writeTo(final OutputStream out) throws IOException {
         if (out == null) {
             throw new IllegalArgumentException("Output stream may not be null");
         }

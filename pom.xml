@@ -16,8 +16,10 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <springframework.version>2.5.6</springframework.version>
+        <springframework.version>3.0.2.RELEASE</springframework.version>
+        <httpcomponents.version>4.1-alpha1</httpcomponents.version>
         <slf4j.version>1.5.2</slf4j.version>
+        <junit.version>4.8.1</junit.version>
         <compileSource>1.5</compileSource>
     </properties>
 

@@ -40,7 +40,7 @@ import com.sirika.httpclienthelpers.DefaultHttpClientFactory;
  * @author Sami Dalouche (sami.dalouche@gmail.com)
  * 
  */
-public class HttpClientFactoryBean implements FactoryBean {
+public final class HttpClientFactoryBean implements FactoryBean<HttpClient> {
     private Map<AuthScope, Credentials> credentials = new HashMap<AuthScope, Credentials>();
     private Map<String, Object> params = new HashMap<String, Object>();
     private CookieStore cookieStore = null;
@@ -49,7 +49,7 @@ public class HttpClientFactoryBean implements FactoryBean {
     private Integer maxTotalConnections = null;
     private Integer defaultMaxConnectionsPerRoute = null;
 
-    public Object getObject() throws Exception {
+    public HttpClient getObject() throws Exception {
         if (maxTotalConnections != null) {
             params.put(AllClientPNames.MAX_TOTAL_CONNECTIONS,
                     maxTotalConnections);
@@ -72,7 +72,7 @@ public class HttpClientFactoryBean implements FactoryBean {
         return cookieStoreToUse;
     }
 
-    public Class getObjectType() {
+    public Class<HttpClient> getObjectType() {
         return HttpClient.class;
     }
 
