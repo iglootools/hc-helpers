@@ -1,277 +1,268 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.sirika.httpclienthelpers</groupId>
-	<artifactId>httpclienthelpers-parent</artifactId>
-	<packaging>pom</packaging>
-	<name>HttpComponents Helpers Parent</name>
-	<description>HttpComponents helpers</description>
-	<version>0.5-SNAPSHOT</version>
-	<url>http://developers.sirika.com/httpclienthelpers</url>
-	<inceptionYear>2009</inceptionYear>
-	<prerequisites>
-		<maven>2.1.0</maven>
-	</prerequisites>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.sirika.httpclienthelpers</groupId>
+    <artifactId>httpclienthelpers-parent</artifactId>
+    <packaging>pom</packaging>
+    <name>HttpComponents Helpers Parent</name>
+    <description>HttpComponents helpers</description>
+    <version>0.5-SNAPSHOT</version>
+    <url>http://developers.sirika.com/httpclienthelpers</url>
+    <inceptionYear>2009</inceptionYear>
+    <prerequisites>
+        <maven>2.1.0</maven>
+    </prerequisites>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<springframework.version>2.5.6</springframework.version>
-		<slf4j.version>1.5.2</slf4j.version>
-		<compileSource>1.5</compileSource>
-	</properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <springframework.version>2.5.6</springframework.version>
+        <slf4j.version>1.5.2</slf4j.version>
+        <compileSource>1.5</compileSource>
+    </properties>
 
-	<scm>
-		<connection>
+    <scm>
+        <connection>
 			scm:git:git://github.com/samokk/httpclienthelpers.git
 		</connection>
-		<developerConnection>
+        <developerConnection>
 			scm:git:git@github.com:samokk/httpclienthelpers.git
 		</developerConnection>
-		<url>http://github.com/samokk/httpclienthelpers</url>
-	</scm>
+        <url>http://github.com/samokk/httpclienthelpers</url>
+    </scm>
 
-	<licenses>
-		<license>
-			<name>Apache License 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
+    <licenses>
+        <license>
+            <name>Apache License 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
-	<issueManagement>
-		<system>Launchpad</system>
-		<url>https://launchpad.net/httpclienthelpers</url>
-	</issueManagement>
+    <issueManagement>
+        <system>Launchpad</system>
+        <url>https://launchpad.net/httpclienthelpers</url>
+    </issueManagement>
 
-	<ciManagement>
-		<url>http://developers.sirika.com:9191/</url>
-		<system>hudson</system>
-		<notifiers>
-			<notifier>
-				<type>mail</type>
-			</notifier>
-		</notifiers>
-	</ciManagement>
-	
-	<developers>
-		<developer>
-			<id>sdalouche</id>
-			<name>Sami Dalouche</name>
-			<email>sami.dalouche@gmail.com</email>
-			<roles>
-				<role>Developer</role>
-			</roles>
-			<timezone>-5</timezone>
-		</developer>
-	</developers>
-	
-	<modules>
-		<module>core</module>
-		<module>springsupport</module>
-		<module>assembly</module>
-	</modules>
+    <ciManagement>
+        <url>http://developers.sirika.com:9191/</url>
+        <system>hudson</system>
+        <notifiers>
+            <notifier>
+                <type>mail</type>
+            </notifier>
+        </notifiers>
+    </ciManagement>
 
-	<profiles>
-		<profile>
-			<id>all</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-source-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>attach-sources</id>
-								<goals>
-									<goal>jar</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-javadoc-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>attach-javadocs</id>
-								<goals>
-									<goal>jar</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-			<reporting>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-changes-plugin</artifactId>
-						<reportSets>
-							<reportSet>
-								<reports>
-									<report>changes-report</report>
-								</reports>
-							</reportSet>
-						</reportSets>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-javadoc-plugin</artifactId>
-						<configuration>
-							<encoding>UTF-8</encoding>
-							<aggregate>true</aggregate>
-						</configuration>
-					</plugin>
+    <developers>
+        <developer>
+            <id>sdalouche</id>
+            <name>Sami Dalouche</name>
+            <email>sami.dalouche@gmail.com</email>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>-5</timezone>
+        </developer>
+    </developers>
 
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-jxr-plugin</artifactId>
-						<configuration>
-							<aggregate>true</aggregate>
+    <modules>
+        <module>core</module>
+        <module>springsupport</module>
+        <module>assembly</module>
+    </modules>
 
-						</configuration>
-					</plugin>
+    <profiles>
+        <profile>
+            <id>all</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+            <reporting>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-changes-plugin</artifactId>
+                        <reportSets>
+                            <reportSet>
+                                <reports>
+                                    <report>changes-report</report>
+                                </reports>
+                            </reportSet>
+                        </reportSets>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <configuration>
+                            <encoding>UTF-8</encoding>
+                            <aggregate>true</aggregate>
+                        </configuration>
+                    </plugin>
 
-					<plugin>
-						<artifactId>maven-surefire-report-plugin</artifactId>
-					</plugin>
-				</plugins>
-			</reporting>
-		</profile>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jxr-plugin</artifactId>
+                        <configuration>
+                            <aggregate>true</aggregate>
 
-		<profile>
-			<id>release</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>com.google.code.maven-license-plugin</groupId>
-						<artifactId>maven-license-plugin</artifactId>
-						<version>1.4.0</version>
-						<configuration>
-							<header>src/etc/header.txt</header>
-							<includes>
-								<include>**/src/**</include>
-							</includes>
-						</configuration>
-						<executions>
-							<execution>
-								<goals>
-									<goal>check</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+                        </configuration>
+                    </plugin>
 
-	<build>
-		<defaultGoal>install</defaultGoal>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-release-plugin</artifactId>
-				<version>2.0-beta-9</version>
-				<configuration>
-					<remoteTagging>true</remoteTagging>
-					<releaseProfiles>release</releaseProfiles>
-					<!-- See http://jira.codehaus.org/browse/MRELEASE-271 -->
-					<preparationGoals>clean install</preparationGoals>
-				</configuration>
-			</plugin>
+                    <plugin>
+                        <artifactId>maven-surefire-report-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </reporting>
+        </profile>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>**/*TestHelper.java</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-eclipse-plugin</artifactId>
-				<configuration>
-					<downloadSources>true</downloadSources>
-					<downloadJavadocs>true</downloadJavadocs>
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-idea-plugin</artifactId>
-				<configuration>
-					<downloadSources>true</downloadSources>
-					<downloadJavadocs>true</downloadJavadocs>
-					<dependenciesAsLibraries>true</dependenciesAsLibraries>
-					<useFullNames>false</useFullNames>
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>${compileSource}</source>
-					<target>${compileSource}</target>
-				</configuration>
-			</plugin>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.google.code.maven-license-plugin</groupId>
+                        <artifactId>maven-license-plugin</artifactId>
+                        <version>1.4.0</version>
+                        <configuration>
+                            <header>src/etc/header.txt</header>
+                            <includes>
+                                <include>**/src/**</include>
+                            </includes>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
+    <build>
+        <defaultGoal>install</defaultGoal>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.0-beta-9</version>
+                <configuration>
+                    <remoteTagging>true</remoteTagging>
+                    <releaseProfiles>release</releaseProfiles>
+                    <!-- See http://jira.codehaus.org/browse/MRELEASE-271 -->
+                    <preparationGoals>clean install</preparationGoals>
+                </configuration>
+            </plugin>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>test-jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>**/*TestHelper.java</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <configuration>
+                    <downloadSources>true</downloadSources>
+                    <downloadJavadocs>true</downloadJavadocs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-idea-plugin</artifactId>
+                <configuration>
+                    <downloadSources>true</downloadSources>
+                    <downloadJavadocs>true</downloadJavadocs>
+                    <dependenciesAsLibraries>true</dependenciesAsLibraries>
+                    <useFullNames>false</useFullNames>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${compileSource}</source>
+                    <target>${compileSource}</target>
+                </configuration>
+            </plugin>
 
 
-		</plugins>
-	</build>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 
-	<distributionManagement>
-		<repository>
-			<id>sirika-repo-releases</id>
-			<name>Sirika Releases Repository</name>
-			<url>scp://developers.sirika.com/srv/http/developers.sirika.com/maven2/releases</url>
-		</repository>
-		<snapshotRepository>
-			<id>sirika-repo-snapshots</id>
-			<name>Sirika Snapshots Repository</name>
-			<url>scp://developers.sirika.com/srv/http/developers.sirika.com/maven2/snapshots</url>
-		</snapshotRepository>
-		<site>
-			<id>sirika-site</id>
-			<url>scp://developers.sirika.com/srv/http/developers.sirika.com/httpclienthelpers</url>
-		</site>
-	</distributionManagement>
 
-<!--
-	<repositories>
+        </plugins>
+    </build>
 
-		<repository>
-			<id>sirika-repo-releases</id>
-			<name>Sirika Releases Repository</name>
-			<url>http://developers.sirika.com/maven2/releases</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
+    <distributionManagement>
+        <repository>
+            <id>sirika-repo-releases</id>
+            <name>Sirika Releases Repository</name>
+            <url>scp://developers.sirika.com/srv/http/developers.sirika.com/maven2/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>sirika-repo-snapshots</id>
+            <name>Sirika Snapshots Repository</name>
+            <url>scp://developers.sirika.com/srv/http/developers.sirika.com/maven2/snapshots</url>
+        </snapshotRepository>
+        <site>
+            <id>sirika-site</id>
+            <url>scp://developers.sirika.com/srv/http/developers.sirika.com/httpclienthelpers</url>
+        </site>
+    </distributionManagement>
 
-		<repository>
-			<id>sirika-repo-snapshots</id>
-			<name>Sirika Snapshots Repository</name>
-			<url>http://developers.sirika.com/maven2/snapshots</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
--->
-	<pluginRepositories />
+    <!--
+        <repositories> <repository> <id>sirika-repo-releases</id>
+        <name>Sirika Releases Repository</name>
+        <url>http://developers.sirika.com/maven2/releases</url>
+        <snapshots> <enabled>false</enabled> </snapshots> </repository>
 
-	<dependencies />
+        <repository> <id>sirika-repo-snapshots</id> <name>Sirika
+        Snapshots Repository</name>
+        <url>http://developers.sirika.com/maven2/snapshots</url>
+        <snapshots> <enabled>true</enabled> </snapshots> </repository>
+        </repositories>
+    -->
+    <pluginRepositories />
+
+    <dependencies />
 </project>
