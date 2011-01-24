@@ -1,12 +1,5 @@
 This is the developer's README. The distributed README is accessible from assembly/src/main/resources/README
 
-= Project URLs  =
-* Project URL: http://developers.sirika.com/hc-helpers
-
-= Maintainer contact =
-* Sami Dalouche <sami.dalouche@gmail.com>
-
-
 = Features =
 
 HttpClient
@@ -20,6 +13,10 @@ GZIP
 MIME 
 * Provides a SourceBody (InputSupplierSourceBody) that delegates to a guava-io InputSupplier 
 * Provides a RepeatableMultipartEntity
+
+= Project Information  =
+* Project URL: http://developers.sirika.com/hc-helpers
+* Maintainer: Sami Dalouche <sami.dalouche@gmail.com>
 
 = Create a release =
 # git clone git@github.com:samokk/hc-helpers.git
