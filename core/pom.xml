@@ -8,7 +8,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.sirika.hchelpers</groupId>
     <artifactId>hchelpers-core</artifactId>
-    <name>HttpComponents Helpers core</name>
+    <name>HttpComponents Helpers Core</name>
     <version>0.6-SNAPSHOT</version>
     <properties>
     </properties>
