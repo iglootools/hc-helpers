@@ -26,6 +26,18 @@ import org.springframework.core.io.InputStreamSource;
 import com.google.common.io.ByteStreams;
 import com.google.common.io.Closeables;
 
+/**
+ * 
+ * @author Sami Dalouche <sami.dalouche@gmail.com>
+ *
+ */
+
+/**
+ * A repeatable Source Body that fetches its data from an {@link InputStreamSource}
+ * 
+ * @author Sami Dalouche (sami.dalouche@gmail.com)
+ *
+ */
 public final class InputStreamSourceBody extends AbstractContentBody {
     private final InputStreamSource inputStreamSource;
     private final String filename;
