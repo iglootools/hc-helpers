@@ -3,13 +3,13 @@
     <parent>
         <artifactId>hchelpers-parent</artifactId>
         <groupId>com.sirika.hchelpers</groupId>
-        <version>0.6-SNAPSHOT</version>
+        <version>0.6</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.sirika.hchelpers</groupId>
     <artifactId>hchelpers-spring</artifactId>
     <name>HttpComponents Helpers Spring</name>
-    <version>0.6-SNAPSHOT</version>
+    <version>0.6</version>
     <properties>
     </properties>
     <dependencies>
@@ -17,7 +17,7 @@
         <dependency>
             <groupId>com.sirika.hchelpers</groupId>
             <artifactId>hchelpers-core</artifactId>
-            <version>0.6-SNAPSHOT</version>
+            <version>0.6</version>
         </dependency>
 
         <dependency>
