@@ -18,6 +18,12 @@
 		<author email="sami.dalouche@gmail.com">Sami Dalouche</author>
 	</properties>
 	<body>
+		<release version="0.5" date="2010-04-11" description="Upgrades">
+        	<action dev="sdalouche" type="update">Upgraded Spring to 3.0.5.RELEASE</action>
+        	<action dev="sdalouche" type="update">Got rid of Commons-* dependencies in favor of guava-io</action>
+        	<action dev="sdalouche" type="update">Got rid of Google-Collecitons in favor of guava-collections</action>
+        	<action dev="sdalouche" type="update">Renamed all artifacts to hchelpers*</action>
+        </release>
         <release version="0.5" date="2010-04-11" description="Upgrades">
             <action dev="sdalouche" type="update">Upgraded Spring to 3.0.1</action>
             <action dev="sdalouche" type="update">Upgraded HttpComponents to 4.1-alpha1</action>
