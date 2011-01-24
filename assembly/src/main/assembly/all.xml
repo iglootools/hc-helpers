@@ -78,8 +78,8 @@
 			<outputDirectory>docs/hchelpers-core</outputDirectory>
 		</fileSet>
 		<fileSet>
-			<directory>../hchelpers-springsupport/target/site</directory>
-			<outputDirectory>docs/hchelpers-springsupport</outputDirectory>
+			<directory>../hchelpers-spring/target/site</directory>
+			<outputDirectory>docs/hchelpers-spring</outputDirectory>
 		</fileSet>
 		<fileSet>
 			<directory>../assembly/target/site</directory>
