@@ -13,16 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sirika.httpclienthelpers.springframework;
+package com.sirika.hchelpers.spring;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.http.entity.mime.MIME;
 import org.apache.http.entity.mime.content.AbstractContentBody;
 import org.springframework.core.io.InputStreamSource;
+
+import com.google.common.io.ByteStreams;
+import com.google.common.io.Closeables;
 
 public final class InputStreamSourceBody extends AbstractContentBody {
     private final InputStreamSource inputStreamSource;
@@ -48,7 +50,6 @@ public final class InputStreamSourceBody extends AbstractContentBody {
         return this.inputStreamSource.getInputStream();
     }
 
-    @Override
     public void writeTo(final OutputStream out) throws IOException {
         if (out == null) {
             throw new IllegalArgumentException("Output stream may not be null");
@@ -56,10 +57,10 @@ public final class InputStreamSourceBody extends AbstractContentBody {
         InputStream in = null;
         try {
             in = this.inputStreamSource.getInputStream();
-            IOUtils.copy(in, out);
+            ByteStreams.copy(in, out);
             out.flush();
         } finally {
-            IOUtils.closeQuietly(in);
+            Closeables.closeQuietly(in);
         }
     }
 

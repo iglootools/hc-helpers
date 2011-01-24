@@ -1,11 +1,13 @@
 This is the developer's README. The distributed README is accessible from assembly/src/main/resources/README
 
 = Project URLs  =
-* Launchpad URL: https://launchpad.net/httpclienthelpers
-* Project URL: http://developers.sirika.com/httpclienthelpers/
+* Project URL: http://developers.sirika.com/hc-helpers
+
+= Maintainer contact =
+* Sami Dalouche <sami.dalouche@gmail.com>
 
 = Create a release =
-# git clone git@github.com:samokk/httpclienthelpers.git
+# git clone git@github.com:samokk/hc-helpers.git
 # add release entry to src/changes/changes.xml
 # make sure all files contain the license header : mvn -Prelease license:format
 # commit & push all the changes
@@ -18,6 +20,4 @@ This is the developer's README. The distributed README is accessible from assemb
 * release : activate sanity checks (licenses, ..) and disable any potential integrated test
 
 = To import the project under eclipse =
-Either :
-* mvn eclipse:clean eclipse:eclipse
-* or use m2eclipse (dev version, the stable one does not work correctly) / Import maven project (recommended)
+* Use m2eclipse

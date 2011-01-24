@@ -16,7 +16,7 @@
 /**
  * 
  */
-package com.sirika.httpclienthelpers.template;
+package com.sirika.hchelpers.template;
 
 import org.apache.http.StatusLine;
 

@@ -32,7 +32,7 @@
 			<useStrictFiltering>true</useStrictFiltering>
 			<useTransitiveFiltering>true</useTransitiveFiltering>
 			<includes>
-				<include>com.sirika.httpclienthelpers:httpclienthelpers-core</include>
+				<include>com.sirika.hchelpers:hchelpers-core</include>
 			</includes>
 		</dependencySet>
 	</dependencySets>
@@ -74,16 +74,16 @@
 			<outputDirectory>docs</outputDirectory>
 		</fileSet>
 		<fileSet>
-			<directory>../httpclienthelpers-core/target/site</directory>
-			<outputDirectory>docs/httpclienthelpers-core</outputDirectory>
+			<directory>../hchelpers-core/target/site</directory>
+			<outputDirectory>docs/hchelpers-core</outputDirectory>
 		</fileSet>
 		<fileSet>
-			<directory>../httpclienthelpers-springsupport/target/site</directory>
-			<outputDirectory>docs/httpclienthelpers-springsupport</outputDirectory>
+			<directory>../hchelpers-springsupport/target/site</directory>
+			<outputDirectory>docs/hchelpers-springsupport</outputDirectory>
 		</fileSet>
 		<fileSet>
 			<directory>../assembly/target/site</directory>
-			<outputDirectory>docs/httpclienthelpers-assembly</outputDirectory>
+			<outputDirectory>docs/hchelpers-assembly</outputDirectory>
 		</fileSet>
 
 
@@ -105,8 +105,8 @@
 			</includes>
 		</fileSet>
 		<fileSet>
-			<directory>../springsupport</directory>
-			<outputDirectory>src/springsupport</outputDirectory>
+			<directory>../spring</directory>
+			<outputDirectory>src/spring</outputDirectory>
 			<includes>
 				<include>pom.xml</include>
 				<include>src/</include>

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sirika.httpclienthelpers;
+package com.sirika.hchelpers;
 
 import java.util.Map;
 import java.util.Map.Entry;
@@ -31,8 +31,8 @@ import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpParams;
 
-import com.sirika.httpclienthelpers.gzip.GzipRequestInterceptor;
-import com.sirika.httpclienthelpers.gzip.GzipResponseInterceptor;
+import com.sirika.hchelpers.gzip.GzipRequestInterceptor;
+import com.sirika.hchelpers.gzip.GzipResponseInterceptor;
 
 /**
  * Helper class to ease the creation of {@link HttpClient}

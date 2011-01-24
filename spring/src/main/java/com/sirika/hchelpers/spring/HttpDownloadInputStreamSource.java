@@ -16,7 +16,7 @@
 /**
  * 
  */
-package com.sirika.httpclienthelpers.springframework;
+package com.sirika.hchelpers.spring;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,9 +29,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.io.InputStreamSource;
 
 import com.google.common.collect.Lists;
-import com.sirika.httpclienthelpers.template.HttpClientTemplate;
-import com.sirika.httpclienthelpers.template.HttpErrorHandler;
-import com.sirika.httpclienthelpers.template.HttpResponseCallback;
+import com.sirika.hchelpers.template.HttpClientTemplate;
+import com.sirika.hchelpers.template.HttpErrorHandler;
+import com.sirika.hchelpers.template.HttpResponseCallback;
 
 public final class HttpDownloadInputStreamSource implements InputStreamSource {
     private final static Logger logger = LoggerFactory

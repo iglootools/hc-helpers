@@ -1,35 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.sirika.httpclienthelpers</groupId>
-    <artifactId>httpclienthelpers-parent</artifactId>
+    <groupId>com.sirika.hchelpers</groupId>
+    <artifactId>hchelpers-parent</artifactId>
     <packaging>pom</packaging>
     <name>HttpComponents Helpers Parent</name>
     <description>HttpComponents helpers</description>
     <version>0.6-SNAPSHOT</version>
-    <url>http://developers.sirika.com/httpclienthelpers</url>
+    <url>http://developers.sirika.com/hc-helpers</url>
     <inceptionYear>2009</inceptionYear>
     <prerequisites>
-        <maven>2.1.0</maven>
+        <maven>3.0.2</maven>
     </prerequisites>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <springframework.version>3.0.2.RELEASE</springframework.version>
-        <httpcomponents.version>4.1-alpha1</httpcomponents.version>
-        <slf4j.version>1.5.2</slf4j.version>
-        <junit.version>4.8.1</junit.version>
+        <springframework.version>3.0.5.RELEASE</springframework.version>
+        <httpcomponents.version>4.1</httpcomponents.version>
+        <guava.version>r03</guava.version>
+        <slf4j.version>1.6.1</slf4j.version>
+        <junit.version>4.8.2</junit.version>
         <compileSource>1.5</compileSource>
     </properties>
 
     <scm>
         <connection>
-			scm:git:git://github.com/samokk/httpclienthelpers.git
+			scm:git:git://github.com/samokk/hc-helpers.git
 		</connection>
         <developerConnection>
-			scm:git:git@github.com:samokk/httpclienthelpers.git
+			scm:git:git@github.com:samokk/hc-helpers.git
 		</developerConnection>
-        <url>http://github.com/samokk/httpclienthelpers</url>
+        <url>https://github.com/samokk/hc-helpers</url>
     </scm>
 
     <licenses>
@@ -40,6 +41,7 @@
         </license>
     </licenses>
 
+<!--  
     <issueManagement>
         <system>Launchpad</system>
         <url>https://launchpad.net/httpclienthelpers</url>
@@ -54,6 +56,8 @@
             </notifier>
         </notifiers>
     </ciManagement>
+-->
+
 
     <developers>
         <developer>
@@ -69,7 +73,7 @@
 
     <modules>
         <module>core</module>
-        <module>springsupport</module>
+        <module>spring</module>
         <module>assembly</module>
     </modules>
 
@@ -247,7 +251,7 @@
         </snapshotRepository>
         <site>
             <id>sirika-site</id>
-            <url>scp://developers.sirika.com/srv/http/developers.sirika.com/httpclienthelpers</url>
+            <url>scp://developers.sirika.com/srv/http/developers.sirika.com/hc-helpers</url>
         </site>
     </distributionManagement>
 

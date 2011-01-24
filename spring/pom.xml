@@ -1,22 +1,22 @@
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
-        <artifactId>httpclienthelpers-parent</artifactId>
-        <groupId>com.sirika.httpclienthelpers</groupId>
+        <artifactId>hchelpers-parent</artifactId>
+        <groupId>com.sirika.hchelpers</groupId>
         <version>0.6-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.sirika.httpclienthelpers</groupId>
-    <artifactId>httpclienthelpers-springsupport</artifactId>
-    <name>HttpClient Helpers Spring Support</name>
+    <groupId>com.sirika.hchelpers</groupId>
+    <artifactId>hchelpers-spring</artifactId>
+    <name>HttpComponents Helpers Spring</name>
     <version>0.6-SNAPSHOT</version>
     <properties>
     </properties>
     <dependencies>
 
         <dependency>
-            <groupId>com.sirika.httpclienthelpers</groupId>
-            <artifactId>httpclienthelpers-core</artifactId>
+            <groupId>com.sirika.hchelpers</groupId>
+            <artifactId>hchelpers-core</artifactId>
             <version>0.6-SNAPSHOT</version>
         </dependency>
 
@@ -32,6 +32,11 @@
             <scope>provided</scope>
         </dependency>
 
+		<dependency>
+		    <groupId>com.google.guava</groupId>
+		    <artifactId>guava-io</artifactId>
+		    <version>${guava.version}</version>
+		</dependency>
 
         <!-- We depend on spring because of the resource abstraction... -->
         <dependency>
@@ -45,18 +50,6 @@
             <version>${springframework.version}</version>
             <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-            <version>2.3</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>1.3.1</version>
-        </dependency>
-
 
         <dependency>
             <groupId>junit</groupId>

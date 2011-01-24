@@ -1,26 +1,26 @@
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
-        <artifactId>httpclienthelpers-parent</artifactId>
-        <groupId>com.sirika.httpclienthelpers</groupId>
+        <artifactId>hchelpers-parent</artifactId>
+        <groupId>com.sirika.hchelpers</groupId>
         <version>0.6-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.sirika.httpclienthelpers</groupId>
-    <artifactId>httpclienthelpers-assembly</artifactId>
+    <groupId>com.sirika.hchelpers</groupId>
+    <artifactId>hchelpers-assembly</artifactId>
     <packaging>pom</packaging>
-    <name>HttpClient Helpers Assembly</name>
+    <name>HttpComponents Helpers Assembly</name>
     <version>0.6-SNAPSHOT</version>
     <dependencies>
         <dependency>
-            <groupId>com.sirika.httpclienthelpers</groupId>
-            <artifactId>httpclienthelpers-core</artifactId>
+            <groupId>com.sirika.hchelpers</groupId>
+            <artifactId>hchelpers-core</artifactId>
             <version>0.6-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>com.sirika.httpclienthelpers</groupId>
-            <artifactId>httpclienthelpers-springsupport</artifactId>
+            <groupId>com.sirika.hchelpers</groupId>
+            <artifactId>hchelpers-spring</artifactId>
             <version>0.6-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
@@ -45,7 +45,7 @@
                             <descriptors>
                                 <descriptor>src/main/assembly/all.xml</descriptor>
                             </descriptors>
-                            <finalName>httpclienthelpers-${version}</finalName>
+                            <finalName>hc-helpers-${version}</finalName>
                             <outputDirectory>target/assembly/out</outputDirectory>
                             <workDirectory>target/assembly/work</workDirectory>
                         </configuration>

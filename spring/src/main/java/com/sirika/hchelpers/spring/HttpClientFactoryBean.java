@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sirika.httpclienthelpers.springframework;
+package com.sirika.hchelpers.spring;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,7 +27,7 @@ import org.apache.http.conn.params.ConnPerRouteBean;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.springframework.beans.factory.FactoryBean;
 
-import com.sirika.httpclienthelpers.DefaultHttpClientFactory;
+import com.sirika.hchelpers.DefaultHttpClientFactory;
 
 /**
  * Spring {@link FactoryBean} helper that eases the creation and configuration
