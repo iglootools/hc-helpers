@@ -23,6 +23,7 @@
         	<action dev="sdalouche" type="update">Got rid of Commons-* dependencies in favor of guava-io</action>
         	<action dev="sdalouche" type="update">Got rid of Google-Collecitons in favor of guava-collections</action>
         	<action dev="sdalouche" type="update">Renamed all artifacts to hchelpers*</action>
+        	<action dev="sdalouche" type="update">Completely reorganized the packages to hide internals</action>
         </release>
         <release version="0.5" date="2010-04-11" description="Upgrades">
             <action dev="sdalouche" type="update">Upgraded Spring to 3.0.1</action>

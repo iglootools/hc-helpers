@@ -16,20 +16,23 @@
 /**
  * 
  */
-package com.sirika.hchelpers.spring;
+package com.sirika.hchelpers.client;
 
-import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.HttpResponse;
 
 /**
- * A {@link MultipartEntity} that is repeatable. It is meant to be used with
- * SourceBody's that are repeatable, such as {@link InputStreamSourceBody}
+ * @see HttpClientTemplate
  * 
  * @author Sami Dalouche (sami.dalouche@gmail.com)
  * 
  */
-public final class RepeatableMultipartEntity extends MultipartEntity {
-    @Override
-    public boolean isRepeatable() {
-        return true;
-    }
+public interface HttpResponseCallback {
+    /**
+     * Called automatically by {@link HttpClientTemplate}
+     * 
+     * @param httpResponse
+     * @return
+     * @throws Exception
+     */
+    Object doWithHttpResponse(HttpResponse httpResponse) throws Exception;
 }

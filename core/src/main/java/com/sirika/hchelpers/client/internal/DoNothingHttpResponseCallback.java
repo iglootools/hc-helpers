@@ -16,23 +16,14 @@
 /**
  * 
  */
-package com.sirika.hchelpers.template;
+package com.sirika.hchelpers.client.internal;
 
 import org.apache.http.HttpResponse;
 
-/**
- * @see HttpClientTemplate
- * 
- * @author Sami Dalouche (sami.dalouche@gmail.com)
- * 
- */
-public interface HttpResponseCallback {
-    /**
-     * Called automatically by {@link HttpClientTemplate}
-     * 
-     * @param httpResponse
-     * @return
-     * @throws Exception
-     */
-    Object doWithHttpResponse(HttpResponse httpResponse) throws Exception;
+import com.sirika.hchelpers.client.HttpResponseCallback;
+
+public final class DoNothingHttpResponseCallback implements HttpResponseCallback {
+    public Object doWithHttpResponse(HttpResponse httpResponse) throws Exception {
+        return null;
+    }
 }

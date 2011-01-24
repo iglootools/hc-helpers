@@ -16,7 +16,7 @@
 /**
  * 
  */
-package com.sirika.hchelpers.spring;
+package com.sirika.hchelpers.client;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,25 +26,31 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.io.InputStreamSource;
 
 import com.google.common.collect.Lists;
-import com.sirika.hchelpers.template.HttpClientTemplate;
-import com.sirika.hchelpers.template.HttpErrorHandler;
-import com.sirika.hchelpers.template.HttpResponseCallback;
+import com.google.common.io.InputSupplier;
 
-public final class HttpDownloadInputStreamSource implements InputStreamSource {
-    private final static Logger logger = LoggerFactory
-            .getLogger(HttpDownloadInputStreamSource.class);
+/**
+ * An {@link InputSupplier} that fetches its data from an HTTP GET request
+ * 
+ * <p> {@link #getInput()} can safely be called several time. This will trigger different
+ * HTTP requests.
+ * </p>
+ * 
+ * @author Sami Dalouche (sami.dalouche@gmail.com)
+ *
+ */
+public final class HttpGetInputSupplier implements InputSupplier<InputStream> {
+    private final static Logger logger = LoggerFactory.getLogger(HttpGetInputSupplier.class);
     private HttpClientTemplate httpClientTemplate;
     private HttpGet httpGet;
     private Iterable<HttpErrorHandler> httpErrorHandlers;
 
-    public HttpDownloadInputStreamSource(HttpClientTemplate httpClientTemplate, HttpGet httpGet) {
+    public HttpGetInputSupplier(HttpClientTemplate httpClientTemplate, HttpGet httpGet) {
         this(httpClientTemplate, httpGet, noErrorHandler());
     }
 
-    public HttpDownloadInputStreamSource(
+    public HttpGetInputSupplier(
             HttpClientTemplate httpClientTemplate,
             HttpGet httpGet, 
             Iterable<HttpErrorHandler> httpErrorHandlers) {
@@ -58,13 +64,22 @@ public final class HttpDownloadInputStreamSource implements InputStreamSource {
         return Lists.newArrayList();
     }
 
+    private InputStream generateInputStream(HttpEntity entity)
+            throws IOException {
+        if (entity != null) {
+            return entity.getContent();
+        } else {
+            return null;
+        }
+    }
+
     /**
      * @throws IOException
      *             if the underlying HTTP connection fails
      * @throws RuntimeException
      *             depending on the miscellaneous exception handlers
      */
-    public InputStream getInputStream() throws IOException, RuntimeException {
+    public InputStream getInput() throws IOException {
         logger.debug("Generating InputStream");
 
         return (InputStream) this.httpClientTemplate.execute(this.httpGet,
@@ -74,16 +89,6 @@ public final class HttpDownloadInputStreamSource implements InputStreamSource {
                         return generateInputStream(httpResponse.getEntity());
                     }
                 }, this.httpErrorHandlers);
-
-    }
-
-    private InputStream generateInputStream(HttpEntity entity)
-            throws IOException {
-        if (entity != null) {
-            return entity.getContent();
-        } else {
-            return null;
-        }
     }
 
 }

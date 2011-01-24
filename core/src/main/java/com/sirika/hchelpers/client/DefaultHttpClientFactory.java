@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sirika.hchelpers;
+package com.sirika.hchelpers.client;
 
 import java.util.Map;
 import java.util.Map.Entry;
@@ -42,9 +42,7 @@ import com.sirika.hchelpers.gzip.GzipResponseInterceptor;
  */
 public class DefaultHttpClientFactory {
     public static DefaultHttpClient defaultHttpClient() {
-        return new DefaultHttpClient(
-                threadSafeClientConnManager(defaultHttpParams()),
-                defaultHttpParams());
+        return new DefaultHttpClient(threadSafeClientConnManager(defaultHttpParams()), defaultHttpParams());
     }
 
     public static DefaultHttpClient httpClient(
@@ -70,24 +68,19 @@ public class DefaultHttpClientFactory {
         return httpClient;
     }
 
-    private static void handleGzipContentCompression(
-            DefaultHttpClient httpClient) {
+    private static void handleGzipContentCompression(DefaultHttpClient httpClient) {
         httpClient.addRequestInterceptor(new GzipRequestInterceptor());
         httpClient.addResponseInterceptor(new GzipResponseInterceptor());
     }
 
-    public static ThreadSafeClientConnManager threadSafeClientConnManager(
-            HttpParams httpParams) {
-        return new ThreadSafeClientConnManager(httpParams,
-                defaultSchemeRegistry());
+    public static ThreadSafeClientConnManager threadSafeClientConnManager(HttpParams httpParams) {
+        return new ThreadSafeClientConnManager(httpParams, defaultSchemeRegistry());
     }
 
     public static SchemeRegistry defaultSchemeRegistry() {
         SchemeRegistry schemeRegistry = new SchemeRegistry();
-        schemeRegistry.register(new Scheme("http", PlainSocketFactory
-                .getSocketFactory(), 80));
-        schemeRegistry.register(new Scheme("https", SSLSocketFactory
-                .getSocketFactory(), 443));
+        schemeRegistry.register(new Scheme("http", 80, PlainSocketFactory.getSocketFactory()));
+        schemeRegistry.register(new Scheme("https", 443, SSLSocketFactory.getSocketFactory()));
         return schemeRegistry;
     }
 

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sirika.hchelpers.template;
+package com.sirika.hchelpers.client;
 
 import java.io.IOException;
 import java.util.List;
@@ -30,6 +30,8 @@ import org.slf4j.LoggerFactory;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
+import com.google.common.io.NullOutputStream;
+import com.sirika.hchelpers.client.internal.DoNothingHttpResponseCallback;
 
 /**
  * Spring-like Template for {@link HttpClient}. It makes sure that all resources
@@ -39,8 +41,7 @@ import com.google.common.collect.Lists;
  * 
  */
 public final class HttpClientTemplate {
-    private final static Logger logger = LoggerFactory
-            .getLogger(HttpClientTemplate.class);
+    private final static Logger logger = LoggerFactory.getLogger(HttpClientTemplate.class);
     private HttpClient httpClient;
     private List<HttpErrorHandler> defaultErrorHandlers = Lists.newArrayList();
 
@@ -77,10 +78,8 @@ public final class HttpClientTemplate {
      * @param httpUriRequest
      * @param httpErrorHandlers
      */
-    public void executeWithoutResult(HttpUriRequest httpUriRequest,
-            Iterable<HttpErrorHandler> httpErrorHandlers) {
-        this.execute(httpUriRequest, new DoNothingHttpResponseCallback(),
-                httpErrorHandlers, consumeResult());
+    public void executeWithoutResult(HttpUriRequest httpUriRequest, Iterable<HttpErrorHandler> httpErrorHandlers) {
+        this.execute(httpUriRequest, new DoNothingHttpResponseCallback(), httpErrorHandlers, consumeResult());
     }
 
     /**
@@ -92,10 +91,8 @@ public final class HttpClientTemplate {
      * @param httpResponseCallback
      * @return
      */
-    public Object execute(HttpUriRequest httpUriRequest,
-            HttpResponseCallback httpResponseCallback) {
-        return this.execute(httpUriRequest, httpResponseCallback,
-                noErrorHandler(), doNotConsumeResult());
+    public Object execute(HttpUriRequest httpUriRequest, HttpResponseCallback httpResponseCallback) {
+        return this.execute(httpUriRequest, httpResponseCallback, noErrorHandler(), doNotConsumeResult());
     }
 
     /**
@@ -108,15 +105,12 @@ public final class HttpClientTemplate {
      * @param httpErrorHandlers
      * @return
      */
-    public Object execute(HttpUriRequest httpUriRequest,
-            HttpResponseCallback httpResponseCallback,
+    public Object execute(HttpUriRequest httpUriRequest, HttpResponseCallback httpResponseCallback, 
             Iterable<HttpErrorHandler> httpErrorHandlers) {
-        return this.execute(httpUriRequest, httpResponseCallback,
-                httpErrorHandlers, false);
+        return this.execute(httpUriRequest, httpResponseCallback, httpErrorHandlers, false);
     }
 
-    public Object execute(HttpUriRequest httpUriRequest,
-            HttpResponseCallback httpResponseCallback,
+    public Object execute(HttpUriRequest httpUriRequest, HttpResponseCallback httpResponseCallback, 
             Iterable<HttpErrorHandler> httpErrorHandlers, boolean consumeContent) {
         try {
             final HttpResponse httpResponse = this.httpClient
@@ -125,12 +119,10 @@ public final class HttpClientTemplate {
             HttpErrorHandler httpErrorHandler = findHttpErrorHandlerApplyingToResponse(
                     httpErrorHandlers, httpResponse);
             if (httpErrorHandler == null) {
-                Object o = httpResponseCallback
-                        .doWithHttpResponse(httpResponse);
+                Object o = httpResponseCallback.doWithHttpResponse(httpResponse);
 
                 if (consumeContent)
                     consumeContent(httpResponse);
-
                 return o;
             } else {
                 httpErrorHandler.handle(httpResponse);
@@ -152,11 +144,10 @@ public final class HttpClientTemplate {
         throw new RuntimeException("Should never happen : programming error");
     }
 
-    private void consumeContent(final HttpResponse httpResponse)
-            throws IOException {
+    private void consumeContent(final HttpResponse httpResponse) throws IOException {
         HttpEntity entity = httpResponse.getEntity();
         if (entity != null) {
-            entity.consumeContent();
+            entity.writeTo(new NullOutputStream());
         }
     }
 
@@ -168,8 +159,7 @@ public final class HttpClientTemplate {
                     this.defaultErrorHandlers),
                     new Predicate<HttpErrorHandler>() {
                         public boolean apply(HttpErrorHandler input) {
-                            return input.apppliesTo(httpResponse
-                                    .getStatusLine());
+                            return input.apppliesTo(httpResponse.getStatusLine());
                         }
                     });
         } catch (NoSuchElementException e) {

@@ -13,30 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sirika.hchelpers.template;
+/**
+ * 
+ */
+package com.sirika.hchelpers.mime;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.StatusLine;
+import org.apache.http.entity.mime.MultipartEntity;
+
 
 /**
- * Reacts when there is a specific (set of) Http Errors
+ * A {@link MultipartEntity} that is repeatable. It is meant to be used with
+ * SourceBody's that are repeatable, such as InputSupplierSourceBody
  * 
  * @author Sami Dalouche (sami.dalouche@gmail.com)
  * 
  */
-public interface HttpErrorHandler {
-    /**
-     * 
-     * @param statusLine
-     * @return whether this matcher applis to the current Http error code
-     */
-    boolean apppliesTo(StatusLine statusLine);
-
-    /**
-     * perform the action of the handler
-     * 
-     * @param response
-     * @throws Exception
-     */
-    void handle(HttpResponse response) throws Exception;
+public final class RepeatableMultipartEntity extends MultipartEntity {
+    @Override
+    public boolean isRepeatable() {
+        return true;
+    }
 }

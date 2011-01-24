@@ -19,6 +19,11 @@
 		    <artifactId>guava-collections</artifactId>
 		    <version>${guava.version}</version>
 		</dependency>
+		<dependency>
+		    <groupId>com.google.guava</groupId>
+		    <artifactId>guava-io</artifactId>
+		    <version>${guava.version}</version>
+		</dependency>
 
         <!-- httpcomponents -->
         <dependency>

@@ -16,9 +16,11 @@
 /**
  * 
  */
-package com.sirika.hchelpers.template;
+package com.sirika.hchelpers.client.internal;
 
 import org.apache.http.StatusLine;
+
+import com.sirika.hchelpers.client.HttpErrorHandler;
 
 /**
  * Abstract implementation for {@link HttpErrorHandler} helper class, that

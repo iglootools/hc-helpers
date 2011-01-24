@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sirika.hchelpers.spring;
+package com.sirika.hchelpers.mime;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,45 +21,37 @@ import java.io.OutputStream;
 
 import org.apache.http.entity.mime.MIME;
 import org.apache.http.entity.mime.content.AbstractContentBody;
-import org.springframework.core.io.InputStreamSource;
 
+import com.google.common.base.Preconditions;
 import com.google.common.io.ByteStreams;
 import com.google.common.io.Closeables;
+import com.google.common.io.InputSupplier;
 
 /**
- * 
- * @author Sami Dalouche <sami.dalouche@gmail.com>
- *
- */
-
-/**
- * A repeatable Source Body that fetches its data from an {@link InputStreamSource}
+ * A repeatable Source Body that fetches its data from an {@link InputSupplier}
  * 
  * @author Sami Dalouche (sami.dalouche@gmail.com)
  *
  */
-public final class InputStreamSourceBody extends AbstractContentBody {
-    private final InputStreamSource inputStreamSource;
+public final class InputSupplierSourceBody extends AbstractContentBody {
+    private final InputSupplier<InputStream> inputSupplier;
     private final String filename;
 
-    public InputStreamSourceBody(final InputStreamSource inputStreamSource,
-            final String mimeType, final String filename) {
+    public InputSupplierSourceBody(final InputSupplier<InputStream> inputSupplier, final String mimeType, 
+            final String filename) {
         super(mimeType);
-        if (inputStreamSource == null) {
-            throw new IllegalArgumentException(
-                    "Input stream source may not be null");
-        }
-        this.inputStreamSource = inputStreamSource;
+        Preconditions.checkState(inputSupplier != null, "InputSupplier may not be null");
+        
+        this.inputSupplier = inputSupplier;
         this.filename = filename;
     }
 
-    public InputStreamSourceBody(final InputStreamSource inputStreamSource,
-            final String filename) {
-        this(inputStreamSource, "application/octet-stream", filename);
+    public InputSupplierSourceBody(final InputSupplier<InputStream> inputSupplier, final String filename) {
+        this(inputSupplier, "application/octet-stream", filename);
     }
 
     public InputStream getInputStream() throws IOException {
-        return this.inputStreamSource.getInputStream();
+        return this.inputSupplier.getInput();
     }
 
     public void writeTo(final OutputStream out) throws IOException {
@@ -68,7 +60,7 @@ public final class InputStreamSourceBody extends AbstractContentBody {
         }
         InputStream in = null;
         try {
-            in = this.inputStreamSource.getInputStream();
+            in = this.inputSupplier.getInput();
             ByteStreams.copy(in, out);
             out.flush();
         } finally {
