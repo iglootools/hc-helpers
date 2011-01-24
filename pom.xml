@@ -178,7 +178,7 @@
         <extensions>
 	      <extension>
 	        <groupId>org.apache.maven.wagon</groupId>
-	         <artifactId>wagon-ssh</artifactId>
+	         <artifactId>wagon-ssh-external</artifactId>
 	         <version>1.0-beta-7</version>
 	      </extension>
 	    </extensions>
@@ -255,16 +255,16 @@
         <repository>
             <id>sirika-repo-releases</id>
             <name>Sirika Releases Repository</name>
-            <url>scp://developers.sirika.com/srv/http/developers.sirika.com/maven2/releases</url>
+            <url>scpexe://developers.sirika.com/srv/http/developers.sirika.com/maven2/releases</url>
         </repository>
         <snapshotRepository>
             <id>sirika-repo-snapshots</id>
             <name>Sirika Snapshots Repository</name>
-            <url>scp://developers.sirika.com/srv/http/developers.sirika.com/maven2/snapshots</url>
+            <url>scpexe://developers.sirika.com/srv/http/developers.sirika.com/maven2/snapshots</url>
         </snapshotRepository>
         <site>
             <id>sirika-site</id>
-            <url>scp://developers.sirika.com/srv/http/developers.sirika.com/hc-helpers</url>
+            <url>scpexe://developers.sirika.com/srv/http/developers.sirika.com/hc-helpers</url>
         </site>
     </distributionManagement>
 
