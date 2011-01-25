@@ -20,6 +20,7 @@
 	<body>
 	    <release version="0.7" date="2011-01-124" description="Fixes">
         	<action dev="sdalouche" type="fix">Fixed build to activate site plugin</action>
+        	<action dev="sdalouche" type="fix">Re-enabled reporting plugins that were disabled due to the maven 3 migration</action>
         </release>
 		<release version="0.6" date="2011-01-124" description="Upgrades">
         	<action dev="sdalouche" type="update">Upgraded Spring to 3.0.5.RELEASE</action>
