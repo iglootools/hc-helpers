@@ -40,7 +40,7 @@ public final class InputSupplierSourceBody extends AbstractContentBody {
     public InputSupplierSourceBody(final InputSupplier<InputStream> inputSupplier, final String mimeType, 
             final String filename) {
         super(mimeType);
-        Preconditions.checkState(inputSupplier != null, "InputSupplier may not be null");
+        Preconditions.checkArgument(inputSupplier != null, "InputSupplier may not be null");
         
         this.inputSupplier = inputSupplier;
         this.filename = filename;

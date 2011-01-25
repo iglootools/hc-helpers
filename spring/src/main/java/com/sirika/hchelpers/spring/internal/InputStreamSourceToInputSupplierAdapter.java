@@ -40,7 +40,7 @@ public class InputStreamSourceToInputSupplierAdapter implements InputSupplier<In
     public InputStreamSourceToInputSupplierAdapter(
             InputStreamSource inputStreamSource) {
         super();
-        Preconditions.checkState(inputStreamSource != null, "inputStreamSource is mandatory");
+        Preconditions.checkArgument(inputStreamSource != null, "inputStreamSource is mandatory");
         this.inputStreamSource = inputStreamSource;
     }
 

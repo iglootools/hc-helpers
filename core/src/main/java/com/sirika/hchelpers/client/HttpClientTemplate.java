@@ -27,6 +27,7 @@ import org.apache.http.client.methods.HttpUriRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.base.Preconditions;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
@@ -47,6 +48,7 @@ public final class HttpClientTemplate {
 
     public HttpClientTemplate(HttpClient httpClient) {
         super();
+        Preconditions.checkArgument(httpClient != null, "httpClient cannot be null");
         this.httpClient = httpClient;
     }
 
@@ -57,6 +59,7 @@ public final class HttpClientTemplate {
      * @param httpErrorHandler
      */
     public void addDefaultErrorHandler(HttpErrorHandler httpErrorHandler) {
+        Preconditions.checkArgument(httpErrorHandler != null, "httpErrorHandler cannot be null");
         defaultErrorHandlers.add(httpErrorHandler);
     }
 
