@@ -32,7 +32,7 @@ import com.sirika.hchelpers.client.DefaultHttpClientFactory;
 /**
  * Spring {@link FactoryBean} helper that eases the creation and configuration
  * of HttpComponents' {@link HttpClient}. Configuring HttpClient authentication,
- * number of connections, ... cannot be done declaratively using HttpClient's
+ * number of connections, ... cannot be done programmatically using HttpClient's
  * native mechanisms. {@link HttpClientFactoryBean}'s goal is to expose these
  * settings so they can be changed declaratively using Spring.
  * 
