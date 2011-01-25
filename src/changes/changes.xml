@@ -20,6 +20,7 @@
 	<body>
 		<release version="0.8" date="2011-01-25" description="Updates">
         	<action dev="sdalouche" type="update">Added more preconditions throughout the helpers</action>
+        	<action dev="sdalouche" type="update">Got rid of AbstractHttpErrorHandler in favor of DelegatingHttpErrorHandler</action>
         </release>
 	    <release version="0.7" date="2011-01-24" description="Fixes">
         	<action dev="sdalouche" type="fix">Fixed build to activate site plugin</action>
