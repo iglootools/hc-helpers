@@ -16,7 +16,7 @@
 /**
  * 
  */
-package com.sirika.hchelpers.client;
+package com.sirika.hchelpers.java;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;

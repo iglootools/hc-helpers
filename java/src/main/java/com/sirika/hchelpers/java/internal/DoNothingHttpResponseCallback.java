@@ -16,11 +16,11 @@
 /**
  * 
  */
-package com.sirika.hchelpers.client.internal;
+package com.sirika.hchelpers.java.internal;
 
 import org.apache.http.HttpResponse;
 
-import com.sirika.hchelpers.client.HttpResponseCallback;
+import com.sirika.hchelpers.java.HttpResponseCallback;
 
 public final class DoNothingHttpResponseCallback implements HttpResponseCallback {
     public Object doWithHttpResponse(HttpResponse httpResponse) throws Exception {

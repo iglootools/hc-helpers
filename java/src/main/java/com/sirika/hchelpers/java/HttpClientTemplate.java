@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sirika.hchelpers.client;
+package com.sirika.hchelpers.java;
 
 import java.io.IOException;
 import java.util.List;
@@ -32,7 +32,7 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.io.NullOutputStream;
-import com.sirika.hchelpers.client.internal.DoNothingHttpResponseCallback;
+import com.sirika.hchelpers.java.internal.DoNothingHttpResponseCallback;
 
 /**
  * Spring-like Template for {@link HttpClient}. It makes sure that all resources

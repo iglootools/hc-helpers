@@ -13,26 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * 
- */
-package com.sirika.hchelpers.client;
+package com.sirika.hchelpers.java;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.StatusLine;
 
 /**
- * @see HttpClientTemplate
+ * Reacts when there is a specific (set of) Http Errors
  * 
  * @author Sami Dalouche (sami.dalouche@gmail.com)
  * 
  */
-public interface HttpResponseCallback {
+public interface HttpErrorHandler {
     /**
-     * Called automatically by {@link HttpClientTemplate}
      * 
-     * @param httpResponse
-     * @return
+     * @param statusLine
+     * @return whether this matcher applis to the current Http error code
+     */
+    boolean apppliesTo(StatusLine statusLine);
+
+    /**
+     * perform the action of the handler
+     * 
+     * @param response
      * @throws Exception
      */
-    Object doWithHttpResponse(HttpResponse httpResponse) throws Exception;
+    void handle(HttpResponse response) throws Exception;
 }
