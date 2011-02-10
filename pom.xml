@@ -70,6 +70,7 @@
     <modules>
         <module>core</module>
         <module>java</module>
+        <module>scala</module>
         <module>spring</module>
         <module>assembly</module>
     </modules>

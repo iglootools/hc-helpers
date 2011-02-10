@@ -6,3 +6,8 @@ target
 */.project
 */.classpath
 */.settings
+
+# idea intellij
+*.iml
+*.ipr
+*.iws
