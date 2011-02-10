@@ -27,7 +27,7 @@ import org.apache.http.conn.params.ConnPerRouteBean;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.springframework.beans.factory.FactoryBean;
 
-import com.sirika.hchelpers.client.DefaultHttpClientFactory;
+import com.sirika.hchelpers.core.DefaultHttpClientFactory;
 
 /**
  * Spring {@link FactoryBean} helper that eases the creation and configuration

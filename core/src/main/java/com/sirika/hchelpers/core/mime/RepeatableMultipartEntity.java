@@ -16,7 +16,7 @@
 /**
  * 
  */
-package com.sirika.hchelpers.mime;
+package com.sirika.hchelpers.core.mime;
 
 import org.apache.http.entity.mime.MultipartEntity;
 

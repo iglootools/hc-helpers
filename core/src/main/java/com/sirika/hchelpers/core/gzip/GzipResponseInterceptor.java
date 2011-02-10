@@ -16,7 +16,7 @@
 /**
  * 
  */
-package com.sirika.hchelpers.gzip;
+package com.sirika.hchelpers.core.gzip;
 
 import java.io.IOException;
 

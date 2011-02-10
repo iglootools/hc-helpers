@@ -7,44 +7,29 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.sirika.hchelpers</groupId>
-    <artifactId>hchelpers-core</artifactId>
-    <name>HttpComponents Helpers Core</name>
+    <artifactId>hchelpers-java</artifactId>
+    <name>HttpComponents Helpers Java</name>
     <version>0.9-SNAPSHOT</version>
     <properties>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>com.sirika.hchelpers</groupId>
+            <artifactId>hchelpers-core</artifactId>
+            <version>0.9-SNAPSHOT</version>
+        </dependency>
         <!-- Common stuff that should be in the JDK in the first place -->
+        <dependency>
+		    <groupId>com.google.guava</groupId>
+		    <artifactId>guava-collections</artifactId>
+		    <version>${guava.version}</version>
+		</dependency>
 		<dependency>
 		    <groupId>com.google.guava</groupId>
 		    <artifactId>guava-io</artifactId>
 		    <version>${guava.version}</version>
 		</dependency>
 
-        <!-- httpcomponents -->
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>${httpcomponents.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpmime</artifactId>
-            <version>${httpcomponents.version}</version>
-        </dependency>
-
-        <!-- Logging Support -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>${slf4j.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        
         <!-- Unit testing -->
         <dependency>
             <groupId>junit</groupId>

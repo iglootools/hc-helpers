@@ -69,6 +69,7 @@
 
     <modules>
         <module>core</module>
+        <module>java</module>
         <module>spring</module>
         <module>assembly</module>
     </modules>
