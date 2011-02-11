@@ -14,16 +14,9 @@ import com.google.common.io.{ByteStreams, InputSupplier}
  * @author Sami Dalouche (sami.dalouche@gmail.com)
  *
  */
-final class HttpInputSupplier[E <: Throwable](httpClientTemplate: HttpClientTemplate[E], httpUriRequest: HttpUriRequest, doOnError: HttpErrorHandler[E]) extends InputSupplier[InputStream] {
+final class InputSupplierWrapperThrowingExceptionOnError[E <: Throwable](inputSupplier: InputSupplier[Either[E, InputStream]]) extends InputSupplier[InputStream] {
   def getInput: InputStream = {
-    val result = httpClientTemplate.doWithResponse(
-      httpUriRequest=httpUriRequest,
-      doOnSuccess={response =>
-        val entity = response.getEntity
-        assume(entity != null, "entity is not supposed to be null")
-        new ByteArrayInputStream(ByteStreams.toByteArray(entity.getContent))
-      },
-      doOnError=doOnError)
+    val result = inputSupplier.getInput()
     result match {
       case Right(is) => is
       case Left(e) => throw e
