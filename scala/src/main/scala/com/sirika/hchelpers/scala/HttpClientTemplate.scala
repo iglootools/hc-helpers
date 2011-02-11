@@ -25,8 +25,9 @@ class HttpClientTemplate[E <: Exception](private[this] val httpClient: HttpClien
                         doOnError:HttpErrorHandler[E] = defaultErrorHandler):Either[E,R] = {
     try {
       val httpResponse = this.httpClient.execute(httpUriRequest)
-      val result =  if(doOnError.orElse(defaultErrorHandler).appliesTo(httpResponse)) {
-        Left(doOnError.handle(httpResponse))
+      val errorHandler = doOnError.orElse(defaultErrorHandler)
+      val result =  if(errorHandler.appliesTo(httpResponse)) {
+        Left(errorHandler.handle(httpResponse))
       } else {
         Right(doOnSuccess(httpResponse))
       }
