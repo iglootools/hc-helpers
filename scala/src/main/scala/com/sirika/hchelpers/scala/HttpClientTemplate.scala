@@ -42,10 +42,11 @@ class HttpClientTemplate[E <: Exception](private[this] val httpClient: HttpClien
     }
   }
 
+
   private def releaseResources(httpResponse: HttpResponse): Unit = {
     val entity = Option(httpResponse.getEntity)
     entity.foreach { e =>
-      e.writeTo(new NullOutputStream)
+      //e.writeTo(new NullOutputStream)
       EntityUtils.consume(e)
     }
   }
