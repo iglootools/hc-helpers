@@ -23,7 +23,9 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.HttpResponseException;
 import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,14 +39,14 @@ import com.sirika.hchelpers.java.internal.DoNothingHttpResponseCallback;
 /**
  * Spring-like Template for {@link HttpClient}. It makes sure that all resources
  * are properly closed in case of exceptions
- * 
+ *
  * @author Sami Dalouche (sami.dalouche@gmail.com)
- * 
+ *
  */
 public final class HttpClientTemplate {
     private final static Logger logger = LoggerFactory.getLogger(HttpClientTemplate.class);
     private HttpClient httpClient;
-    private List<HttpErrorHandler> defaultErrorHandlers = Lists.newArrayList();
+    private List<HttpErrorHandler> defaultErrorHandlers = Lists.newArrayList(defaultHandler());
 
     public HttpClientTemplate(HttpClient httpClient) {
         super();
@@ -53,21 +55,10 @@ public final class HttpClientTemplate {
     }
 
     /**
-     * Add a default error handler to the chain. The handlers are executed in
-     * the order they are added
-     * 
-     * @param httpErrorHandler
-     */
-    public void addDefaultErrorHandler(HttpErrorHandler httpErrorHandler) {
-        Preconditions.checkArgument(httpErrorHandler != null, "httpErrorHandler cannot be null");
-        defaultErrorHandlers.add(httpErrorHandler);
-    }
-
-    /**
      * Execute a {@link HttpUriRequest} without any specific
      * {@link HttpErrorHandler}. The resulting {@link HttpResponse} will be
      * consumed automatically
-     * 
+     *
      * @param httpUriRequest
      */
     public void executeWithoutResult(HttpUriRequest httpUriRequest) {
@@ -77,55 +68,46 @@ public final class HttpClientTemplate {
     /**
      * Executes a {@link HttpUriRequest} with the given list of
      * {@link HttpErrorHandler}'s.
-     * 
+     *
      * @param httpUriRequest
      * @param httpErrorHandlers
      */
     public void executeWithoutResult(HttpUriRequest httpUriRequest, Iterable<HttpErrorHandler> httpErrorHandlers) {
-        this.execute(httpUriRequest, new DoNothingHttpResponseCallback(), httpErrorHandlers, consumeResult());
+        this.execute(httpUriRequest, new DoNothingHttpResponseCallback(), httpErrorHandlers);
     }
 
     /**
      * Same as #execute(HttpUriRequest, HttpResponseCallback, Iterable,
      * boolean)) with no error handlers and no automatic consumption of the
      * {@link HttpResponse}
-     * 
+     *
      * @param httpUriRequest
      * @param httpResponseCallback
      * @return
      */
     public Object execute(HttpUriRequest httpUriRequest, HttpResponseCallback httpResponseCallback) {
-        return this.execute(httpUriRequest, httpResponseCallback, noErrorHandler(), doNotConsumeResult());
+        return this.execute(httpUriRequest, httpResponseCallback, noErrorHandler());
     }
 
     /**
      * Executes the given {@link HttpUriRequest}, considers the given list of
      * {@link HttpErrorHandler} and returns the result of
      * {@link HttpResponseCallback#doWithHttpResponse(HttpResponse)}
-     * 
+     *
      * @param httpUriRequest
      * @param httpResponseCallback
      * @param httpErrorHandlers
      * @return
      */
-    public Object execute(HttpUriRequest httpUriRequest, HttpResponseCallback httpResponseCallback, 
-            Iterable<HttpErrorHandler> httpErrorHandlers) {
-        return this.execute(httpUriRequest, httpResponseCallback, httpErrorHandlers, false);
-    }
-
-    public Object execute(HttpUriRequest httpUriRequest, HttpResponseCallback httpResponseCallback, 
-            Iterable<HttpErrorHandler> httpErrorHandlers, boolean consumeContent) {
+    public Object execute(HttpUriRequest httpUriRequest, HttpResponseCallback httpResponseCallback,
+                          Iterable<HttpErrorHandler> httpErrorHandlers) {
         try {
-            final HttpResponse httpResponse = this.httpClient
-                    .execute(httpUriRequest);
+            final HttpResponse httpResponse = this.httpClient.execute(httpUriRequest);
             logger.debug("Received Status: {}", httpResponse.getStatusLine());
-            HttpErrorHandler httpErrorHandler = findHttpErrorHandlerApplyingToResponse(
-                    httpErrorHandlers, httpResponse);
+            HttpErrorHandler httpErrorHandler = findHttpErrorHandlerApplyingToResponse(httpErrorHandlers, httpResponse);
             if (httpErrorHandler == null) {
                 Object o = httpResponseCallback.doWithHttpResponse(httpResponse);
-
-                if (consumeContent)
-                    consumeContent(httpResponse);
+                consumeContent(httpResponse);
                 return o;
             } else {
                 httpErrorHandler.handle(httpResponse);
@@ -150,7 +132,8 @@ public final class HttpClientTemplate {
     private void consumeContent(final HttpResponse httpResponse) throws IOException {
         HttpEntity entity = httpResponse.getEntity();
         if (entity != null) {
-            entity.writeTo(new NullOutputStream());
+            //entity.writeTo(new NullOutputStream());
+            EntityUtils.consume(entity);
         }
     }
 
@@ -174,12 +157,14 @@ public final class HttpClientTemplate {
         return Lists.newArrayList();
     }
 
-    private boolean consumeResult() {
-        return true;
-    }
-
-    private boolean doNotConsumeResult() {
-        return false;
+    private HttpErrorHandler defaultHandler() {
+        return new DelegatingHttpErrorHandler(HttpErrorMatchers.statusCodeGreaterOrEquals(300), new HttpResponseCallback() {
+            public Object doWithHttpResponse(HttpResponse httpResponse) throws Exception {
+                throw new HttpResponseException(
+                        httpResponse.getStatusLine().getStatusCode(),
+                        httpResponse.getStatusLine().getReasonPhrase());
+            }
+        });
     }
 
 }

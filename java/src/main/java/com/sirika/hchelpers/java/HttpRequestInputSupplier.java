@@ -14,16 +14,20 @@
  * limitations under the License.
  */
 /**
- * 
+ *
  */
 package com.sirika.hchelpers.java;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import com.google.common.base.Preconditions;
+import com.google.common.io.ByteStreams;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpUriRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,31 +36,31 @@ import com.google.common.io.InputSupplier;
 
 /**
  * An {@link InputSupplier} that fetches its data from an HTTP GET request
- * 
+ *
  * <p> {@link #getInput()} can safely be called several time. This will trigger different
  * HTTP requests.
  * </p>
- * 
+ *
  * @author Sami Dalouche (sami.dalouche@gmail.com)
  *
  */
-public final class HttpGetInputSupplier implements InputSupplier<InputStream> {
-    private final static Logger logger = LoggerFactory.getLogger(HttpGetInputSupplier.class);
+public final class HttpRequestInputSupplier implements InputSupplier<InputStream> {
+    private final static Logger logger = LoggerFactory.getLogger(HttpRequestInputSupplier.class);
     private HttpClientTemplate httpClientTemplate;
-    private HttpGet httpGet;
+    private HttpUriRequest httpUriRequest;
     private Iterable<HttpErrorHandler> httpErrorHandlers;
 
-    public HttpGetInputSupplier(HttpClientTemplate httpClientTemplate, HttpGet httpGet) {
+    public HttpRequestInputSupplier(HttpClientTemplate httpClientTemplate, HttpGet httpGet) {
         this(httpClientTemplate, httpGet, noErrorHandler());
     }
 
-    public HttpGetInputSupplier(
+    public HttpRequestInputSupplier(
             HttpClientTemplate httpClientTemplate,
-            HttpGet httpGet, 
+            HttpUriRequest httpUriRequest,
             Iterable<HttpErrorHandler> httpErrorHandlers) {
         super();
         this.httpClientTemplate = httpClientTemplate;
-        this.httpGet = httpGet;
+        this.httpUriRequest = httpUriRequest;
         this.httpErrorHandlers = httpErrorHandlers;
     }
 
@@ -64,13 +68,9 @@ public final class HttpGetInputSupplier implements InputSupplier<InputStream> {
         return Lists.newArrayList();
     }
 
-    private InputStream generateInputStream(HttpEntity entity)
-            throws IOException {
-        if (entity != null) {
-            return entity.getContent();
-        } else {
-            return null;
-        }
+    private InputStream generateInputStream(HttpEntity entity) throws IOException {
+        Preconditions.checkArgument(entity != null, "entity is required");
+        return new ByteArrayInputStream(ByteStreams.toByteArray(entity.getContent()));
     }
 
     /**
@@ -82,10 +82,9 @@ public final class HttpGetInputSupplier implements InputSupplier<InputStream> {
     public InputStream getInput() throws IOException {
         logger.debug("Generating InputStream");
 
-        return (InputStream) this.httpClientTemplate.execute(this.httpGet,
+        return (InputStream) this.httpClientTemplate.execute(this.httpUriRequest,
                 new HttpResponseCallback() {
-                    public Object doWithHttpResponse(HttpResponse httpResponse)
-                            throws Exception {
+                    public Object doWithHttpResponse(HttpResponse httpResponse) throws Exception {
                         return generateInputStream(httpResponse.getEntity());
                     }
                 }, this.httpErrorHandlers);
