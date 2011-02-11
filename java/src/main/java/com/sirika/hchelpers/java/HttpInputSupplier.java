@@ -37,24 +37,20 @@ import com.google.common.io.InputSupplier;
 /**
  * An {@link InputSupplier} that fetches its data from an HTTP GET request
  *
- * <p> {@link #getInput()} can safely be called several time. This will trigger different
- * HTTP requests.
- * </p>
- *
  * @author Sami Dalouche (sami.dalouche@gmail.com)
  *
  */
-public final class HttpRequestInputSupplier implements InputSupplier<InputStream> {
-    private final static Logger logger = LoggerFactory.getLogger(HttpRequestInputSupplier.class);
+public final class HttpInputSupplier implements InputSupplier<InputStream> {
+    private final static Logger logger = LoggerFactory.getLogger(HttpInputSupplier.class);
     private HttpClientTemplate httpClientTemplate;
     private HttpUriRequest httpUriRequest;
     private Iterable<HttpErrorHandler> httpErrorHandlers;
 
-    public HttpRequestInputSupplier(HttpClientTemplate httpClientTemplate, HttpGet httpGet) {
-        this(httpClientTemplate, httpGet, noErrorHandler());
+    public HttpInputSupplier(HttpClientTemplate httpClientTemplate, HttpUriRequest httpUriRequest) {
+        this(httpClientTemplate, httpUriRequest, noErrorHandler());
     }
 
-    public HttpRequestInputSupplier(
+    public HttpInputSupplier(
             HttpClientTemplate httpClientTemplate,
             HttpUriRequest httpUriRequest,
             Iterable<HttpErrorHandler> httpErrorHandlers) {
@@ -80,8 +76,6 @@ public final class HttpRequestInputSupplier implements InputSupplier<InputStream
      *             depending on the miscellaneous exception handlers
      */
     public InputStream getInput() throws IOException {
-        logger.debug("Generating InputStream");
-
         return (InputStream) this.httpClientTemplate.execute(this.httpUriRequest,
                 new HttpResponseCallback() {
                     public Object doWithHttpResponse(HttpResponse httpResponse) throws Exception {
