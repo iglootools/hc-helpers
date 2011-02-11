@@ -8,7 +8,7 @@ import org.apache.http.{HttpEntity, HttpResponse}
 import org.apache.http.client.{HttpResponseException, HttpClient}
 
 /**
- * Spring-like Template for {@link HttpClient}. It makes sure that all resources
+ * Scala-ish Spring-inspired Template for {@link HttpClient}. It makes sure that all resources
  * are properly closed in case of exceptions
  *
  * @author Sami Dalouche (sami.dalouche@gmail.com)
