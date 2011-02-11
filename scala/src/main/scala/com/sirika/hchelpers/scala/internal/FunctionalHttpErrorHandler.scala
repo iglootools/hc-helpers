@@ -15,8 +15,8 @@ class FunctionalHttpErrorHandler[T](val matches: (StatusLine) => Boolean, doOnEr
   require(matches != null, "matches is required")
   require(doOnError != null, "callback is required")
 
-  def appliesTo(statusLine: StatusLine): Boolean = {
-    matches(statusLine)
+  def appliesTo(response: HttpResponse): Boolean = {
+    matches(response.getStatusLine)
   }
 
   def handle(response: HttpResponse): T = {

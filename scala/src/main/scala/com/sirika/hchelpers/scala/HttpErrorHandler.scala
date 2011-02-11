@@ -21,7 +21,12 @@ import org.apache.http.client.HttpResponseException
 object HttpErrorHandler {
   def apply[E](matches: (StatusLine) => Boolean = {s => false}, doOnError: (HttpResponse) => E = {r: HttpResponse => ()}): HttpErrorHandler[E] = new HttpErrorHandler[E] {
     def handle(response: HttpResponse): E = doOnError(response)
-    def appliesTo(statusLine: StatusLine): Boolean = matches(statusLine)
+    def appliesTo(response: HttpResponse): Boolean = matches(response.getStatusLine)
+  }
+
+  def apply[E](f: PartialFunction[HttpResponse, E]): HttpErrorHandler[E] = new HttpErrorHandler[E] {
+    def handle(response: HttpResponse): E = f(response)
+    def appliesTo(response: HttpResponse): Boolean = f.isDefinedAt(response)
   }
 
   def non2xxErrorHandler: HttpErrorHandler[Exception] =
@@ -41,7 +46,7 @@ trait HttpErrorHandler[+E] extends PartialFunction[HttpResponse, E]{
    * @param statusLine
    * @return whether this matcher applis to the current Http error code
    */
-  def appliesTo(statusLine: StatusLine): Boolean
+  def appliesTo(response: HttpResponse): Boolean
 
   /**
    * perform the action of the handler
@@ -51,8 +56,10 @@ trait HttpErrorHandler[+E] extends PartialFunction[HttpResponse, E]{
    */
   def handle(response: HttpResponse): E
 
-  def isDefinedAt(response: HttpResponse): Boolean = appliesTo(response.getStatusLine)
+  def isDefinedAt(response: HttpResponse): Boolean = appliesTo(response)
   def apply(response: HttpResponse): E = handle(response)
+
+  def orElse[E1 >: E](that: HttpErrorHandler[E1]): HttpErrorHandler[E1] = HttpErrorHandler(f = super.orElse(that))
 }
 
 

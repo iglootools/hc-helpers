@@ -25,7 +25,7 @@ class HttpClientTemplate[E <: Exception](private[this] val httpClient: HttpClien
     var httpResponse: Option[HttpResponse] = None
     try {
       httpResponse = Some(this.httpClient.execute(httpUriRequest))
-      if(doOnError.appliesTo(httpResponse.get.getStatusLine)) {
+      if(doOnError.orElse(defaultErrorHandler).appliesTo(httpResponse.get)) {
         Left(doOnError.handle(httpResponse.get))
       } else {
         Right(doOnSuccess(httpResponse.get))
