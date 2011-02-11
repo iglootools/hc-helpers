@@ -20,8 +20,8 @@ class HttpClientTemplate[E <: Exception](private[this] val httpClient: HttpClien
   require(defaultErrorHandler != null, "defaultErrorHandler is required")
 
   def doWithResponse[R](httpUriRequest: HttpUriRequest,
-                 doOnSuccess: (HttpResponse)=> R = {r: HttpResponse => ()},
-                 doOnError:HttpErrorHandler[E] = defaultErrorHandler):Either[E,R] = {
+                        doOnSuccess: (HttpResponse)=> R = {r: HttpResponse => ()},
+                        doOnError:HttpErrorHandler[E] = defaultErrorHandler):Either[E,R] = {
     var httpResponse: Option[HttpResponse] = None
     try {
       httpResponse = Some(this.httpClient.execute(httpUriRequest))
