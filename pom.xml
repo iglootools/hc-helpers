@@ -17,7 +17,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <springframework.version>3.0.5.RELEASE</springframework.version>
         <httpcomponents.version>4.1</httpcomponents.version>
-        <guava.version>r03</guava.version>
+        <guava.version>r08</guava.version>
         <slf4j.version>1.6.1</slf4j.version>
         <junit.version>4.8.2</junit.version>
         <compileSource>1.5</compileSource>

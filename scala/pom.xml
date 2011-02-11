@@ -28,7 +28,7 @@
         <!-- Common stuff that should be in the JDK in the first place -->
 	<dependency>
 	    <groupId>com.google.guava</groupId>
-	    <artifactId>guava-io</artifactId>
+	    <artifactId>guava</artifactId>
 	    <version>${guava.version}</version>
 	</dependency>
 
