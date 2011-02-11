@@ -15,7 +15,7 @@ import org.apache.http.util.EntityUtils
  * @author Sami Dalouche (sami.dalouche@gmail.com)
  *
  */
-class HttpClientTemplate[E <: Exception](private[this] val httpClient: HttpClient,
+final class HttpClientTemplate[E](private[this] val httpClient: HttpClient,
                                          private[this] val defaultErrorHandler: HttpErrorHandler[E] = HttpErrorHandler.non2xxErrorHandler) {
   require(httpClient != null, "httpClient is required")
   require(defaultErrorHandler != null, "defaultErrorHandler is required")
