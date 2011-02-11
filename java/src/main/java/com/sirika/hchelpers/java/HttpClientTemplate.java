@@ -99,14 +99,14 @@ public final class HttpClientTemplate {
      * @param httpErrorHandlers
      * @return
      */
-    public Object execute(HttpUriRequest httpUriRequest, HttpResponseCallback httpResponseCallback,
+    public <T> T execute(HttpUriRequest httpUriRequest, HttpResponseCallback<T> httpResponseCallback,
                           Iterable<HttpErrorHandler> httpErrorHandlers) {
         try {
             final HttpResponse httpResponse = this.httpClient.execute(httpUriRequest);
             logger.debug("Received Status: {}", httpResponse.getStatusLine());
             HttpErrorHandler httpErrorHandler = findHttpErrorHandlerApplyingToResponse(httpErrorHandlers, httpResponse);
             if (httpErrorHandler == null) {
-                Object o = httpResponseCallback.doWithHttpResponse(httpResponse);
+                T o = httpResponseCallback.doWithHttpResponse(httpResponse);
                 consumeContent(httpResponse);
                 return o;
             } else {

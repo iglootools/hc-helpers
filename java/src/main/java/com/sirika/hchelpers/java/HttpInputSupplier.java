@@ -76,9 +76,9 @@ public final class HttpInputSupplier implements InputSupplier<InputStream> {
      *             depending on the miscellaneous exception handlers
      */
     public InputStream getInput() throws IOException {
-        return (InputStream) this.httpClientTemplate.execute(this.httpUriRequest,
-                new HttpResponseCallback() {
-                    public Object doWithHttpResponse(HttpResponse httpResponse) throws Exception {
+        return this.httpClientTemplate.execute(this.httpUriRequest,
+                new HttpResponseCallback<InputStream>() {
+                    public InputStream doWithHttpResponse(HttpResponse httpResponse) throws Exception {
                         return generateInputStream(httpResponse.getEntity());
                     }
                 }, this.httpErrorHandlers);

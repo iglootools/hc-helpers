@@ -34,7 +34,7 @@ public final class DelegatingHttpErrorHandler implements HttpErrorHandler {
     private HttpErrorMatcher errorMatcher;
     private HttpResponseCallback httpResponseCallback;
 
-    public DelegatingHttpErrorHandler(HttpErrorMatcher errorMatcher, HttpResponseCallback httpResponseCallback) {
+    public DelegatingHttpErrorHandler(HttpErrorMatcher errorMatcher, HttpResponseCallback<Void> httpResponseCallback) {
         super();
         Preconditions.checkArgument(errorMatcher != null, "errorMatcher is required");
         Preconditions.checkArgument(httpResponseCallback != null, "doWithHttpResponse is required");

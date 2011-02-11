@@ -26,7 +26,7 @@ import org.apache.http.HttpResponse;
  * @author Sami Dalouche (sami.dalouche@gmail.com)
  * 
  */
-public interface HttpResponseCallback {
+public interface HttpResponseCallback<T> {
     /**
      * Called automatically by {@link HttpClientTemplate}
      * 
@@ -34,5 +34,5 @@ public interface HttpResponseCallback {
      * @return
      * @throws Exception
      */
-    Object doWithHttpResponse(HttpResponse httpResponse) throws Exception;
+    T doWithHttpResponse(HttpResponse httpResponse) throws Exception;
 }
