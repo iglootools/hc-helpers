@@ -4,8 +4,9 @@ import org.apache.http.client.methods.HttpUriRequest
 import org.apache.http.HttpResponse
 import org.apache.http.client.HttpClient
 import org.apache.http.util.EntityUtils
-import com.google.common.io.InputSupplier
-import java.io.InputStream
+import com.google.common.io.{CharStreams, InputSupplier}
+import java.io.{InputStreamReader, InputStream}
+import com.google.common.base.Charsets
 
 /**
  * Scala-ish Spring-inspired Template for {@link HttpClient}. It makes sure that all resources
@@ -23,7 +24,9 @@ final class HttpClientTemplate[E](private[this] val httpClient: HttpClient,
    * @throws Exception for system and IO failures, but reports results of result handlers as a Left(e)
    */
   def doWithResponse[R](httpUriRequest: HttpUriRequest,
-                        doOnSuccess: (HttpResponse)=> R = {r: HttpResponse => ()},
+                        doOnSuccess: (HttpResponse)=> R = {r: HttpResponse =>
+                          assume(r.getEntity != null, "entity cannot be null")
+                          CharStreams.toString(new InputStreamReader(r.getEntity.getContent, Charsets.UTF_8))},
                         doOnError:HttpErrorHandler[E] = defaultErrorHandler):Either[E,R] = {
     try {
       val httpResponse = this.httpClient.execute(httpUriRequest)
