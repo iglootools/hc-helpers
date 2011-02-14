@@ -12,16 +12,16 @@ import com.google.common.io.{ByteStreams, InputSupplier}
  * @author Sami Dalouche (sami.dalouche@gmail.com)
  *
  */
-final class InMemoryHttpInputSupplier[E](httpClientTemplate: HttpClientTemplate[E], httpUriRequest: HttpUriRequest, doOnError: HttpErrorHandler[E]) extends InputSupplier[Either[E, InputStream]] {
+final class InMemoryHttpInputSupplier[E](httpClientTemplate: HttpClientTemplate[E], httpUriRequest: HttpUriRequest, onError: HttpErrorHandler[E]) extends InputSupplier[Either[E, InputStream]] {
   def getInput: Either[E, InputStream] = {
     httpClientTemplate.doWithResponse(
       httpUriRequest=httpUriRequest,
-      doOnSuccess={response =>
+      onSuccess={response =>
         val entity = response.getEntity
         assume(entity != null, "entity is not supposed to be null")
         new ByteArrayInputStream(ByteStreams.toByteArray(entity.getContent))
       },
-      doOnError=doOnError)
+      onError=onError)
   }
 
   /**

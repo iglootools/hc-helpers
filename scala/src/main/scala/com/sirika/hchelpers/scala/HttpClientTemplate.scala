@@ -24,17 +24,15 @@ final class HttpClientTemplate[E](private[this] val httpClient: HttpClient,
    * @throws Exception for system and IO failures, but reports results of result handlers as a Left(e)
    */
   def doWithResponse[R](httpUriRequest: HttpUriRequest,
-                        doOnSuccess: (HttpResponse)=> R = {r: HttpResponse =>
-                          assume(r.getEntity != null, "entity cannot be null")
-                          CharStreams.toString(new InputStreamReader(r.getEntity.getContent, Charsets.UTF_8))},
-                        doOnError:HttpErrorHandler[E] = defaultErrorHandler):Either[E,R] = {
+                        onSuccess: (HttpResponse)=> R,
+                        onError:HttpErrorHandler[E] = defaultErrorHandler):Either[E,R] = {
     try {
       val httpResponse = this.httpClient.execute(httpUriRequest)
-      val errorHandler = doOnError.orElse(defaultErrorHandler)
+      val errorHandler = onError.orElse(defaultErrorHandler)
       val result =  if(errorHandler.appliesTo(httpResponse)) {
         Left(errorHandler.handle(httpResponse))
       } else {
-        Right(doOnSuccess(httpResponse))
+        Right(onSuccess(httpResponse))
       }
       releaseResources(httpResponse)
       result
@@ -44,6 +42,24 @@ final class HttpClientTemplate[E](private[this] val httpClient: HttpClient,
         httpUriRequest.abort
         throw e
       }
+    }
+  }
+
+  /**
+   * Simple shortcut for doWithResponse that considers the result is a well-formed 2xx result that can be converted to a String.
+   * @throws Exception if anything wrong happens
+   */
+  def fetchAsString(httpUriRequest: HttpUriRequest): String = {
+    val result = doWithResponse(httpUriRequest = httpUriRequest,onSuccess =  {r: HttpResponse =>
+      assume(r.getEntity != null, "entity cannot be null")
+      CharStreams.toString(new InputStreamReader(r.getEntity.getContent, Charsets.UTF_8))})
+
+    result match {
+      case Left(e) => e match {
+        case ex: Exception => throw ex
+        case _ => throw new RuntimeException("" + e)
+      }
+      case Right(s) => s
     }
   }
 
