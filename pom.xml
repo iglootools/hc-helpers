@@ -37,22 +37,22 @@
         </license>
     </licenses>
 
-<!--  
-    <issueManagement>
-        <system>Launchpad</system>
-        <url>https://launchpad.net/httpclienthelpers</url>
-    </issueManagement>
+    <!--
+        <issueManagement>
+            <system>Launchpad</system>
+            <url>https://launchpad.net/httpclienthelpers</url>
+        </issueManagement>
 
-    <ciManagement>
-        <url>http://developers.sirika.com:9191/</url>
-        <system>hudson</system>
-        <notifiers>
-            <notifier>
-                <type>mail</type>
-            </notifier>
-        </notifiers>
-    </ciManagement>
--->
+        <ciManagement>
+            <url>http://developers.sirika.com:9191/</url>
+            <system>hudson</system>
+            <notifiers>
+                <notifier>
+                    <type>mail</type>
+                </notifier>
+            </notifiers>
+        </ciManagement>
+    -->
 
 
     <developers>
@@ -105,50 +105,50 @@
                         </executions>
                     </plugin>
                     <!-- http://blog.bindul.name/2010/12/16/reporting-plugin-dependencies-for-maven-3-x-builds/ -->
-		           	<plugin> 
-			           <groupId>org.apache.maven.plugins</groupId>
-			           <artifactId>maven-site-plugin</artifactId>
-			           <configuration>
-			           		<generateSitemap>true</generateSitemap>
-			           		<reportPlugins>
-			                    <plugin>
-			                        <groupId>org.apache.maven.plugins</groupId>
-			                        <artifactId>maven-changes-plugin</artifactId>
-			                        <reportSets>
-			                            <reportSet>
-			                                <reports>
-			                                    <report>changes-report</report>
-			                                </reports>
-			                            </reportSet>
-			                        </reportSets>
-			                    </plugin>
-			                    <plugin>
-			                        <groupId>org.apache.maven.plugins</groupId>
-			                        <artifactId>maven-javadoc-plugin</artifactId>
-			                        <configuration>
-			                            <encoding>UTF-8</encoding>
-			                            <aggregate>true</aggregate>
-			                        </configuration>
-			                    </plugin>
-			
-			                    <plugin>
-			                        <groupId>org.apache.maven.plugins</groupId>
-			                        <artifactId>maven-jxr-plugin</artifactId>
-			                        <configuration>
-			                            <aggregate>true</aggregate>
-			                        </configuration>
-			                    </plugin>
-			
-			                    <plugin>
-			                        <artifactId>maven-surefire-report-plugin</artifactId>
-			                    </plugin>
-			                    
-			                    <plugin>
-			                        <artifactId>maven-project-info-reports-plugin</artifactId>
-			                    </plugin>
-			           		</reportPlugins>
-			           </configuration>
-		           </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-site-plugin</artifactId>
+                        <configuration>
+                            <generateSitemap>true</generateSitemap>
+                            <reportPlugins>
+                                <plugin>
+                                    <groupId>org.apache.maven.plugins</groupId>
+                                    <artifactId>maven-changes-plugin</artifactId>
+                                    <reportSets>
+                                        <reportSet>
+                                            <reports>
+                                                <report>changes-report</report>
+                                            </reports>
+                                        </reportSet>
+                                    </reportSets>
+                                </plugin>
+                                <plugin>
+                                    <groupId>org.apache.maven.plugins</groupId>
+                                    <artifactId>maven-javadoc-plugin</artifactId>
+                                    <configuration>
+                                        <encoding>UTF-8</encoding>
+                                        <aggregate>true</aggregate>
+                                    </configuration>
+                                </plugin>
+
+                                <plugin>
+                                    <groupId>org.apache.maven.plugins</groupId>
+                                    <artifactId>maven-jxr-plugin</artifactId>
+                                    <configuration>
+                                        <aggregate>true</aggregate>
+                                    </configuration>
+                                </plugin>
+
+                                <plugin>
+                                    <artifactId>maven-surefire-report-plugin</artifactId>
+                                </plugin>
+
+                                <plugin>
+                                    <artifactId>maven-project-info-reports-plugin</artifactId>
+                                </plugin>
+                            </reportPlugins>
+                        </configuration>
+                    </plugin>
                 </plugins>
             </build>
         </profile>
@@ -183,28 +183,28 @@
     <build>
         <defaultGoal>install</defaultGoal>
         <extensions>
-	      <extension>
-	        <groupId>org.apache.maven.wagon</groupId>
-	         <artifactId>wagon-ssh-external</artifactId>
-	         <version>1.0-beta-7</version>
-	      </extension>
-	    </extensions>
-	    <pluginManagement>
-          <plugins>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-site-plugin</artifactId>
-              <version>3.0-beta-3</version>
-            </plugin>
-          </plugins>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh-external</artifactId>
+                <version>1.0-beta-7</version>
+            </extension>
+        </extensions>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.0-beta-3</version>
+                </plugin>
+            </plugins>
         </pluginManagement>
         <plugins>
-        <!-- 
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>wagon-maven-plugin</artifactId>
-				<version>1.0-beta-3</version>
-			</plugin>  -->
+            <!--
+               <plugin>
+                   <groupId>org.codehaus.mojo</groupId>
+                   <artifactId>wagon-maven-plugin</artifactId>
+                   <version>1.0-beta-3</version>
+               </plugin>  -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
