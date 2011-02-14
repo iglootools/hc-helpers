@@ -1,8 +1,7 @@
 package com.sirika.hchelpers.scala
 
-import org.apache.http.client.methods.{HttpUriRequest}
-import java.io.{ByteArrayInputStream, InputStream}
-import com.google.common.io.{ByteStreams, InputSupplier}
+import java.io.InputStream
+import com.google.common.io.InputSupplier
 ;
 
 /**

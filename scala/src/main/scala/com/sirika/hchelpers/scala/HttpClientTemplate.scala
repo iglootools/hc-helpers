@@ -1,11 +1,10 @@
 package com.sirika.hchelpers.scala
 
 import org.apache.http.client.methods.HttpUriRequest
-import com.sirika.hchelpers.scala.Implicits._
-import org.apache.http.{HttpEntity, HttpResponse}
-import org.apache.http.client.{HttpResponseException, HttpClient}
+import org.apache.http.HttpResponse
+import org.apache.http.client.HttpClient
 import org.apache.http.util.EntityUtils
-import com.google.common.io.{InputSupplier, NullOutputStream}
+import com.google.common.io.InputSupplier
 import java.io.InputStream
 
 /**
