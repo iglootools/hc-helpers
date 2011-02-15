@@ -22,6 +22,8 @@ import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.Credentials;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.protocol.RequestAcceptEncoding;
+import org.apache.http.client.protocol.ResponseContentEncoding;
 import org.apache.http.conn.scheme.PlainSocketFactory;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
@@ -69,8 +71,8 @@ public class DefaultHttpClientFactory {
     }
 
     private static void handleGzipContentCompression(DefaultHttpClient httpClient) {
-        httpClient.addRequestInterceptor(new GzipRequestInterceptor());
-        httpClient.addResponseInterceptor(new GzipResponseInterceptor());
+        httpClient.addRequestInterceptor(new RequestAcceptEncoding());
+        httpClient.addResponseInterceptor(new ResponseContentEncoding());
     }
 
     public static ThreadSafeClientConnManager threadSafeClientConnManager(HttpParams httpParams) {
