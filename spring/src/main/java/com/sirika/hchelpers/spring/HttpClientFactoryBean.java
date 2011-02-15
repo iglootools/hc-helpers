@@ -24,6 +24,7 @@ import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.params.AllClientPNames;
 import org.apache.http.conn.params.ConnPerRouteBean;
+import org.apache.http.conn.routing.HttpRoute;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.springframework.beans.factory.FactoryBean;
 
@@ -35,10 +36,10 @@ import com.sirika.hchelpers.core.DefaultHttpClientFactory;
  * number of connections, ... cannot be done programmatically using HttpClient's
  * native mechanisms. {@link HttpClientFactoryBean}'s goal is to expose these
  * settings so they can be changed declaratively using Spring.
- * 
- * 
+ *
+ *
  * @author Sami Dalouche (sami.dalouche@gmail.com)
- * 
+ *
  */
 public final class HttpClientFactoryBean implements FactoryBean<HttpClient> {
     private Map<AuthScope, Credentials> credentials = new HashMap<AuthScope, Credentials>();
@@ -46,21 +47,18 @@ public final class HttpClientFactoryBean implements FactoryBean<HttpClient> {
     private CookieStore cookieStore = null;
     private boolean shouldUseCookieStore = false;
     private boolean shouldUseGzipContentcompression = true;
-    private Integer maxTotalConnections = null;
-    private Integer defaultMaxConnectionsPerRoute = null;
+    private int maxTotalConnections = DefaultHttpClientFactory.DEFAULT_MAX_NUMBER_OF_CONNECTIONS;
+    private int defaultMaxConnectionsPerRoute = DefaultHttpClientFactory.DEFAULT_MAX_NUMBER_OF_CONNECTIONS_PER_ROUTE;
 
     public HttpClient getObject() throws Exception {
-        if (maxTotalConnections != null) {
-            params.put(AllClientPNames.MAX_TOTAL_CONNECTIONS,
-                    maxTotalConnections);
-        }
-        if (defaultMaxConnectionsPerRoute != null) {
-            params.put(AllClientPNames.MAX_CONNECTIONS_PER_ROUTE,
-                    new ConnPerRouteBean(defaultMaxConnectionsPerRoute));
-        }
-
-        return DefaultHttpClientFactory.httpClient(credentials, params,
-                cookieStore(), shouldUseGzipContentcompression);
+        return DefaultHttpClientFactory.httpClient(
+                credentials,
+                cookieStore(),
+                shouldUseGzipContentcompression,
+                new HashMap<HttpRoute, Integer>(),
+                maxTotalConnections,
+                defaultMaxConnectionsPerRoute,
+                params);
     }
 
     private CookieStore cookieStore() {
@@ -100,19 +98,18 @@ public final class HttpClientFactoryBean implements FactoryBean<HttpClient> {
 
     /**
      * See http://hc.apache.org/httpclient-3.x/preference-api.html
-     * 
+     *
      * @param params
      */
     public void setParams(Map<String, Object> params) {
         this.params = params;
     }
 
-    public void setMaxTotalConnections(Integer maxTotalConnections) {
+    public void setMaxTotalConnections(int maxTotalConnections) {
         this.maxTotalConnections = maxTotalConnections;
     }
 
-    public void setDefaultMaxConnectionsPerRoute(
-            Integer defaultMaxConnectionsPerRoute) {
+    public void setDefaultMaxConnectionsPerRoute(int defaultMaxConnectionsPerRoute) {
         this.defaultMaxConnectionsPerRoute = defaultMaxConnectionsPerRoute;
     }
 

@@ -15,6 +15,7 @@
  */
 package com.sirika.hchelpers.core;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -24,6 +25,7 @@ import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.protocol.RequestAcceptEncoding;
 import org.apache.http.client.protocol.ResponseContentEncoding;
+import org.apache.http.conn.routing.HttpRoute;
 import org.apache.http.conn.scheme.PlainSocketFactory;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
@@ -33,30 +35,46 @@ import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpParams;
 
-import com.sirika.hchelpers.core.gzip.GzipRequestInterceptor;
-import com.sirika.hchelpers.core.gzip.GzipResponseInterceptor;
-
 /**
  * Helper class to ease the creation of {@link HttpClient}
- * 
+ *
  * @author Sami Dalouche (sami.dalouche@gmail.com)
- * 
+ *
  */
 public class DefaultHttpClientFactory {
+    public static int DEFAULT_MAX_NUMBER_OF_CONNECTIONS = 20;
+    public static int DEFAULT_MAX_NUMBER_OF_CONNECTIONS_PER_ROUTE = 2;
+
     public static DefaultHttpClient defaultHttpClient() {
-        return new DefaultHttpClient(threadSafeClientConnManager(defaultHttpParams()), defaultHttpParams());
+        return httpClient(
+                new HashMap<AuthScope, Credentials>(),
+                null,
+                true,
+                new HashMap<HttpRoute, Integer>(),
+                DEFAULT_MAX_NUMBER_OF_CONNECTIONS,
+                DEFAULT_MAX_NUMBER_OF_CONNECTIONS_PER_ROUTE,
+                new HashMap<String,Object>());
     }
 
     public static DefaultHttpClient httpClient(
             Map<AuthScope, Credentials> credentials,
-            Map<String, Object> params, CookieStore cookieStore,
-            boolean shouldUseGzipCompression) {
-        DefaultHttpClient httpClient = new DefaultHttpClient(
-                threadSafeClientConnManager(httpParams(params)),
-                httpParams(params));
+            CookieStore cookieStore,
+            boolean shouldUseGzipCompression,
+            Map<HttpRoute, Integer> maxNumberOfConnectionsPerRoute,
+            int maxTotalNumberOfConnections,
+            int defaultMaxNumberOfConnectionsPerRoute,
+            Map<String, Object> params) {
+
+        DefaultHttpClient httpClient =
+                new DefaultHttpClient(
+                        threadSafeClientConnManager(
+                                maxNumberOfConnectionsPerRoute,
+                                maxTotalNumberOfConnections,
+                                defaultMaxNumberOfConnectionsPerRoute),
+                        httpParams(params));
+
         for (Entry<AuthScope, Credentials> e : credentials.entrySet()) {
-            httpClient.getCredentialsProvider().setCredentials(e.getKey(),
-                    e.getValue());
+            httpClient.getCredentialsProvider().setCredentials(e.getKey(),e.getValue());
         }
 
         if (cookieStore != null) {
@@ -75,8 +93,19 @@ public class DefaultHttpClientFactory {
         httpClient.addResponseInterceptor(new ResponseContentEncoding());
     }
 
-    public static ThreadSafeClientConnManager threadSafeClientConnManager(HttpParams httpParams) {
-        return new ThreadSafeClientConnManager(httpParams, defaultSchemeRegistry());
+    public static ThreadSafeClientConnManager threadSafeClientConnManager(
+            Map<HttpRoute, Integer> maxNumberOfConnectionsPerRoute,
+            int maxNumberOfConnections,
+            int defaultMaxNumberOfConnectionsPerRoute) {
+        ThreadSafeClientConnManager cm = new ThreadSafeClientConnManager(defaultSchemeRegistry());
+        cm.setMaxTotal(maxNumberOfConnections);
+        cm.setDefaultMaxPerRoute(defaultMaxNumberOfConnectionsPerRoute);
+
+        for(HttpRoute r : maxNumberOfConnectionsPerRoute.keySet()) {
+            cm.setMaxForRoute(r, maxNumberOfConnectionsPerRoute.get(r));
+        }
+
+        return cm;
     }
 
     public static SchemeRegistry defaultSchemeRegistry() {
