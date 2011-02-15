@@ -13,7 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sirika.hchelpers.scala;
+package com.sirika.hchelpers.scala.client;
+
 import org.apache.http.HttpResponse
 import org.apache.http.StatusLine
 import org.apache.http.client.HttpResponseException

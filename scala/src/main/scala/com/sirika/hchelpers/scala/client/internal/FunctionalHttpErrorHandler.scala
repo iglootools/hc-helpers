@@ -1,9 +1,7 @@
-package com.sirika.hchelpers.scala.internal
+package com.sirika.hchelpers.scala.client.internal
 
 import org.apache.http.{HttpResponse, StatusLine}
-import com.sirika.hchelpers.scala.HttpErrorHandler
-
-;
+import com.sirika.hchelpers.scala.client.HttpErrorHandler
 
 /**
  * {@link HttpErrorHandler} that delegates to {@link HttpErrorMatcher} and {@link HttpResponseCallback}
@@ -11,7 +9,7 @@ import com.sirika.hchelpers.scala.HttpErrorHandler
  * @author Sami Dalouche (sami.dalouche@gmail.com)
  *
  */
-class FunctionalHttpErrorHandler[T](val matches: (StatusLine) => Boolean, doOnError: (HttpResponse)=> T) extends HttpErrorHandler[T] {
+protected[hchelpers] final class FunctionalHttpErrorHandler[T](val matches: (StatusLine) => Boolean, doOnError: (HttpResponse)=> T) extends HttpErrorHandler[T] {
   require(matches != null, "matches is required")
   require(doOnError != null, "callback is required")
 

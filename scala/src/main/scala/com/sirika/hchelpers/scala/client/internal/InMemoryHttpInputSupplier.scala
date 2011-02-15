@@ -1,8 +1,9 @@
-package com.sirika.hchelpers.scala
+package com.sirika.hchelpers.scala.client.internal
 
 import org.apache.http.client.methods.HttpUriRequest
 import java.io.{ByteArrayInputStream, InputStream}
 import com.google.common.io.{ByteStreams, InputSupplier}
+import com.sirika.hchelpers.scala.client.{HttpErrorHandler, HttpClientTemplate}
 ;
 
 /**
@@ -12,7 +13,7 @@ import com.google.common.io.{ByteStreams, InputSupplier}
  * @author Sami Dalouche (sami.dalouche@gmail.com)
  *
  */
-final class InMemoryHttpInputSupplier[E <: Throwable](httpClientTemplate: HttpClientTemplate[E], httpUriRequest: HttpUriRequest, onError: HttpErrorHandler[E]) extends InputSupplier[Either[E, InputStream]] {
+protected[hchelpers] final class InMemoryHttpInputSupplier[E <: Throwable](httpClientTemplate: HttpClientTemplate[E], httpUriRequest: HttpUriRequest, onError: HttpErrorHandler[E]) extends InputSupplier[Either[E, InputStream]] {
   def getInput: Either[E, InputStream] = {
     httpClientTemplate.doWithResponse(
       httpUriRequest=httpUriRequest,

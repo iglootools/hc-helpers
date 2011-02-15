@@ -1,4 +1,4 @@
-package com.sirika.hchelpers.scala
+package com.sirika.hchelpers.scala.client
 
 import org.apache.http.auth.{AuthScope, Credentials}
 import org.apache.http.client.{CookieStore, HttpClient}

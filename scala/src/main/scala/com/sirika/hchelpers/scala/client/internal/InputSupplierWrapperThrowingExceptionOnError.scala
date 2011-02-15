@@ -1,4 +1,4 @@
-package com.sirika.hchelpers.scala
+package com.sirika.hchelpers.scala.client.internal
 
 import java.io.InputStream
 import com.google.common.io.InputSupplier
@@ -13,7 +13,7 @@ import com.google.common.io.InputSupplier
  * @author Sami Dalouche (sami.dalouche@gmail.com)
  *
  */
-final class InputSupplierWrapperThrowingExceptionOnError[E <: Throwable](inputSupplier: InputSupplier[Either[E, InputStream]]) extends InputSupplier[InputStream] {
+protected[hchelpers] final class InputSupplierWrapperThrowingExceptionOnError[E <: Throwable](inputSupplier: InputSupplier[Either[E, InputStream]]) extends InputSupplier[InputStream] {
   def getInput: InputStream = {
     val result = inputSupplier.getInput()
     result match {
