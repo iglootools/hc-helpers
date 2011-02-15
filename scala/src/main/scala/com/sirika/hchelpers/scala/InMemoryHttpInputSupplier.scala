@@ -12,7 +12,7 @@ import com.google.common.io.{ByteStreams, InputSupplier}
  * @author Sami Dalouche (sami.dalouche@gmail.com)
  *
  */
-final class InMemoryHttpInputSupplier[E](httpClientTemplate: HttpClientTemplate[E], httpUriRequest: HttpUriRequest, onError: HttpErrorHandler[E]) extends InputSupplier[Either[E, InputStream]] {
+final class InMemoryHttpInputSupplier[E <: Throwable](httpClientTemplate: HttpClientTemplate[E], httpUriRequest: HttpUriRequest, onError: HttpErrorHandler[E]) extends InputSupplier[Either[E, InputStream]] {
   def getInput: Either[E, InputStream] = {
     httpClientTemplate.doWithResponse(
       httpUriRequest=httpUriRequest,
@@ -36,10 +36,7 @@ final class InMemoryHttpInputSupplier[E](httpClientTemplate: HttpClientTemplate[
         val result = InMemoryHttpInputSupplier.this.getInput()
         result match {
           case Right(is) => is
-          case Left(e) => e match {
-            case ex: Exception => throw ex
-            case _ => throw new RuntimeException("" + e)
-          }
+          case Left(e) => throw e
         }
       }
     }

@@ -15,7 +15,7 @@ import com.google.common.base.Charsets
  * @author Sami Dalouche (sami.dalouche@gmail.com)
  *
  */
-final class HttpClientTemplate[E](private[this] val httpClient: HttpClient,
+final class HttpClientTemplate[E <: Throwable](private[this] val httpClient: HttpClient,
                                   private[this] val defaultErrorHandler: HttpErrorHandler[E] = HttpErrorHandler.non2xxErrorHandler) {
   require(httpClient != null, "httpClient is required")
   require(defaultErrorHandler != null, "defaultErrorHandler is required")
@@ -55,10 +55,7 @@ final class HttpClientTemplate[E](private[this] val httpClient: HttpClient,
       CharStreams.toString(new InputStreamReader(r.getEntity.getContent, Charsets.UTF_8))})
 
     result match {
-      case Left(e) => e match {
-        case ex: Exception => throw ex
-        case _ => throw new RuntimeException("" + e)
-      }
+      case Left(e) => throw e
       case Right(s) => s
     }
   }
