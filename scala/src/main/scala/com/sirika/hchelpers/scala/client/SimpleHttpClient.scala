@@ -11,7 +11,7 @@ final object SimpleHttpClient {
   def apply(credentials: Map[AuthScope,Credentials]=Map(),
             cookieStore: Option[CookieStore]=None,
             shouldUseGzipCompression: Boolean=true,
-            maxNumberOfConnectionsPerRoute: Map[HttpRoute, Integer] = Map(),
+            maxNumberOfConnectionsPerRoute: Map[HttpRoute, Int] = Map(),
             maxTotalNumberOfConnections: Int = DefaultHttpClientFactory.DEFAULT_MAX_NUMBER_OF_CONNECTIONS,
             defaultMaxNumberOfConnectionsPerRoute: Int = DefaultHttpClientFactory.DEFAULT_MAX_NUMBER_OF_CONNECTIONS_PER_ROUTE,
             params: Map[String, AnyRef]=Map()): HttpClient = {
@@ -19,7 +19,7 @@ final object SimpleHttpClient {
       credentials,
       cookieStore.getOrElse(null),
       shouldUseGzipCompression,
-      maxNumberOfConnectionsPerRoute,
+      maxNumberOfConnectionsPerRoute map { case (x,y) => (x,y:java.lang.Integer) },
       maxTotalNumberOfConnections,
       defaultMaxNumberOfConnectionsPerRoute,
       params)
