@@ -15,7 +15,6 @@
  */
 package com.sirika.hchelpers.scala.client
 
-import internal.InMemoryHttpInputSupplier
 import org.apache.http.client.methods.HttpUriRequest
 import org.apache.http.HttpResponse
 import org.apache.http.client.HttpClient

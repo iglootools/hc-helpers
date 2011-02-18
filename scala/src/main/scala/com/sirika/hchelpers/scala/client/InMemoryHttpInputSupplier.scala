@@ -1,3 +1,5 @@
+package com.sirika.hchelpers.scala.client
+
 /**
  * Copyright 2011 Sami Dalouche
  *
@@ -13,13 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sirika.hchelpers.scala.client.internal
-
 import org.apache.http.client.methods.HttpUriRequest
 import java.io.{ByteArrayInputStream, InputStream}
 import com.google.common.io.{ByteStreams, InputSupplier}
-import com.sirika.hchelpers.scala.client.{HttpErrorHandler, HttpClientTemplate}
-;
 
 /**
  * An {@link InputSupplier} that fetches its data from an HTTP GET request and stores the intermediate result in memory

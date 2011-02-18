@@ -1,3 +1,5 @@
+package com.sirika.hchelpers.scala.client
+
 /**
  * Copyright 2011 Sami Dalouche
  *
@@ -13,8 +15,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sirika.hchelpers.scala.client.internal
-
 import java.io.InputStream
 import com.google.common.io.InputSupplier
 ;
