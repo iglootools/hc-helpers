@@ -27,31 +27,29 @@
             <useStrictFiltering>true</useStrictFiltering>
             <useTransitiveFiltering>true</useTransitiveFiltering>
             <scope>compile</scope>
-            <includes>
-                <include>com.sirika.hchelpers:hchelpers-spring</include>
-                <include>com.sirika.hchelpers:hchelpers-java</include>
-                <include>com.sirika.hchelpers:hchelpers-core</include>
-            </includes>
+            <excludes>
+                <exclude>com.sirika.hchelpers:hchelpers-scala</exclude>
+            </excludes>
         </dependencySet>
         <dependencySet>
             <outputDirectory>java-nospring</outputDirectory>
             <useStrictFiltering>true</useStrictFiltering>
             <useTransitiveFiltering>true</useTransitiveFiltering>
             <scope>compile</scope>
-            <includes>
-                <include>com.sirika.hchelpers:hchelpers-java</include>
-                <include>com.sirika.hchelpers:hchelpers-core</include>
-            </includes>
+            <excludes>
+                <exclude>com.sirika.hchelpers:hchelpers-spring</exclude>
+                <exclude>com.sirika.hchelpers:hchelpers-scala</exclude>
+            </excludes>
         </dependencySet>
         <dependencySet>
             <outputDirectory>scala-all</outputDirectory>
             <useStrictFiltering>true</useStrictFiltering>
             <useTransitiveFiltering>true</useTransitiveFiltering>
             <scope>compile</scope>
-            <includes>
-                <include>com.sirika.hchelpers:hchelpers-scala</include>
-                <include>com.sirika.hchelpers:hchelpers-core</include>
-            </includes>
+            <excludes>
+                <exclude>com.sirika.hchelpers:hchelpers-spring</exclude>
+                <exclude>com.sirika.hchelpers:hchelpers-java</exclude>
+            </excludes>
         </dependencySet>
     </dependencySets>
 
