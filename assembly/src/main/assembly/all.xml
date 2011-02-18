@@ -66,7 +66,7 @@
             </includes>
         </fileSet>
 
-        <!-- Include the website in the assembly -->
+        <!-- Include the website in the assembly
         <fileSet>
             <directory>../target/site</directory>
             <outputDirectory>docs</outputDirectory>
@@ -92,6 +92,9 @@
             <outputDirectory>docs/hchelpers-assembly</outputDirectory>
         </fileSet>
 
+        FIXME: does not work, and should also include javadocs + scaladocs
+        -->
+
         <!-- Include the source code in the assembly -->
         <fileSet>
             <directory>${parent.basedir}</directory>
@@ -100,6 +103,9 @@
             <excludes>
                 <exclude>**/*.log</exclude>
                 <exclude>**/${project.build.directory}/**</exclude>
+                <exclude>**/*.iml</exclude>
+                <exclude>**/*.ipr</exclude>
+                <exclude>**/*.iws</exclude>
             </excludes>
         </fileSet>
     </fileSets>
