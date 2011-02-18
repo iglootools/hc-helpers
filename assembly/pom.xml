@@ -14,13 +14,19 @@
     <dependencies>
         <dependency>
             <groupId>com.sirika.hchelpers</groupId>
-            <artifactId>hchelpers-core</artifactId>
+            <artifactId>hchelpers-java</artifactId>
             <version>0.9-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.sirika.hchelpers</groupId>
             <artifactId>hchelpers-spring</artifactId>
+            <version>0.9-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.sirika.hchelpers</groupId>
+            <artifactId>hchelpers-scala</artifactId>
             <version>0.9-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

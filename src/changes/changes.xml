@@ -39,6 +39,7 @@
         	<action dev="sdalouche" type="update">Upgrade to guava r08</action>
         	<action dev="sdalouche" type="add">Added a scala version of the helpers</action>
         	<action dev="sdalouche" type="fix">Made sure all connections are released</action>
+            <action dev="sdalouche" type="update">Got rid of tar.gz distribution</action>
         </release>
 
 		<release version="0.8" date="2011-01-25" description="Updates">

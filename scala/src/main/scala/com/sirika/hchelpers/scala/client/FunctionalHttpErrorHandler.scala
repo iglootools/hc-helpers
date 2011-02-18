@@ -16,7 +16,6 @@ package com.sirika.hchelpers.scala.client
  * limitations under the License.
  */
 import org.apache.http.{HttpResponse, StatusLine}
-import com.sirika.hchelpers.scala.client.HttpErrorHandler
 
 /**
  * {@link HttpErrorHandler} that delegates to {@link HttpErrorMatcher} and {@link HttpResponseCallback}
