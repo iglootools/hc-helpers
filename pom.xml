@@ -214,6 +214,7 @@
                     <releaseProfiles>release</releaseProfiles>
                     <!-- See http://jira.codehaus.org/browse/MRELEASE-271 -->
                     <preparationGoals>clean install</preparationGoals>
+                    <!--<goals>deploy site site:deploy</goals> -->
                 </configuration>
             </plugin>
 
