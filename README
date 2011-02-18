@@ -34,3 +34,6 @@ MIME
 
 = To import the project under eclipse =
 * Use m2eclipse
+
+= Backlog =
+* Convert build to SBT ?
