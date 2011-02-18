@@ -18,6 +18,12 @@
             <artifactId>hchelpers-core</artifactId>
             <version>0.9-SNAPSHOT</version>
         </dependency>
+        <!-- Logging Support -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
         <!-- Common stuff that should be in the JDK in the first place -->
         <!-- Unit testing -->
         <dependency>
