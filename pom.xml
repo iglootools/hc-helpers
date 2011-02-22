@@ -7,7 +7,7 @@
     <name>HttpComponents Helpers Parent</name>
     <description>HttpComponents helpers</description>
     <version>0.10-SNAPSHOT</version>
-    <url>http://developers.sirika.com/hc-helpers</url>
+    <url>http://www.iglootools.org/hc-helpers</url>
     <inceptionYear>2009</inceptionYear>
     <prerequisites>
         <maven>3.0.2</maven>
@@ -36,24 +36,6 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
-
-    <!--
-        <issueManagement>
-            <system>Launchpad</system>
-            <url>https://launchpad.net/httpclienthelpers</url>
-        </issueManagement>
-
-        <ciManagement>
-            <url>http://developers.sirika.com:9191/</url>
-            <system>hudson</system>
-            <notifiers>
-                <notifier>
-                    <type>mail</type>
-                </notifier>
-            </notifiers>
-        </ciManagement>
-    -->
-
 
     <developers>
         <developer>
@@ -270,33 +252,21 @@
 
     <distributionManagement>
         <repository>
-            <id>sirika-repo-releases</id>
-            <name>Sirika Releases Repository</name>
-            <url>scpexe://developers.sirika.com/srv/http/developers.sirika.com/maven2/releases</url>
+            <id>iglootools-repo-releases</id>
+            <name>Iglootools Releases Repository</name>
+            <url>scpexe://iglootools.org/srv/http/iglootools.org/maven2/releases</url>
         </repository>
         <snapshotRepository>
-            <id>sirika-repo-snapshots</id>
-            <name>Sirika Snapshots Repository</name>
-            <url>scpexe://developers.sirika.com/srv/http/developers.sirika.com/maven2/snapshots</url>
+            <id>iglootools-repo-snapshots</id>
+            <name>Iglootools Snapshots Repository</name>
+            <url>scpexe://iglootools.org/srv/http/iglootools.org/maven2/snapshots</url>
         </snapshotRepository>
         <site>
-            <id>sirika-site</id>
-            <url>scpexe://developers.sirika.com/srv/http/developers.sirika.com/hc-helpers</url>
+            <id>iglootools-site</id>
+            <url>scpexe://iglootools.org/srv/http/iglootools.org/hc-helpers</url>
         </site>
     </distributionManagement>
 
-    <!--
-        <repositories> <repository> <id>sirika-repo-releases</id>
-        <name>Sirika Releases Repository</name>
-        <url>http://developers.sirika.com/maven2/releases</url>
-        <snapshots> <enabled>false</enabled> </snapshots> </repository>
-
-        <repository> <id>sirika-repo-snapshots</id> <name>Sirika
-        Snapshots Repository</name>
-        <url>http://developers.sirika.com/maven2/snapshots</url>
-        <snapshots> <enabled>true</enabled> </snapshots> </repository>
-        </repositories>
-    -->
     <pluginRepositories />
 
     <dependencies />

@@ -15,11 +15,11 @@ MIME
 * Provides a RepeatableMultipartEntity
 
 = Project Information  =
-* Project URL: http://developers.sirika.com/hc-helpers
+* Project URL: http://www.iglootools/hc-helpers
 * Maintainer: Sami Dalouche <sami.dalouche@gmail.com>
 
 = Create a release =
-* make sure that  ~/.m2/settings.xml contains your ssh configuration for sirika-repo-releases, sirika-repo-snapshots and sirika-site
+* make sure that  ~/.m2/settings.xml contains your ssh configuration for iglootools-repo-releases, iglootools-repo-snapshots and iglootools-site
 # git clone git@github.com:samokk/hc-helpers.git
 # add release entry to src/changes/changes.xml
 # make sure all files contain the license header : mvn -Prelease license:format
