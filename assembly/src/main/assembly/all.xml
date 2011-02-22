@@ -28,7 +28,7 @@
             <useTransitiveFiltering>true</useTransitiveFiltering>
             <scope>compile</scope>
             <excludes>
-                <exclude>com.sirika.hchelpers:hchelpers-scala</exclude>
+                <exclude>org.iglootools.hchelpers:hchelpers-scala</exclude>
             </excludes>
         </dependencySet>
         <dependencySet>
@@ -37,8 +37,8 @@
             <useTransitiveFiltering>true</useTransitiveFiltering>
             <scope>compile</scope>
             <excludes>
-                <exclude>com.sirika.hchelpers:hchelpers-spring</exclude>
-                <exclude>com.sirika.hchelpers:hchelpers-scala</exclude>
+                <exclude>org.iglootools.hchelpers:hchelpers-spring</exclude>
+                <exclude>org.iglootools.hchelpers:hchelpers-scala</exclude>
             </excludes>
         </dependencySet>
         <dependencySet>
@@ -47,8 +47,8 @@
             <useTransitiveFiltering>true</useTransitiveFiltering>
             <scope>compile</scope>
             <excludes>
-                <exclude>com.sirika.hchelpers:hchelpers-spring</exclude>
-                <exclude>com.sirika.hchelpers:hchelpers-java</exclude>
+                <exclude>org.iglootools.hchelpers:hchelpers-spring</exclude>
+                <exclude>org.iglootools.hchelpers:hchelpers-java</exclude>
             </excludes>
         </dependencySet>
     </dependencySets>
