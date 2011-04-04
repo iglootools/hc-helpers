@@ -1,11 +1,11 @@
+# maven
 target
-*/target
+.scala_dependencies
+
+# eclipse
 .project
 .classpath
 .settings
-*/.project
-*/.classpath
-*/.settings
 
 # idea intellij
 *.iml
