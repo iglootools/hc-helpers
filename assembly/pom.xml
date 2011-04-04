@@ -3,31 +3,31 @@
     <parent>
         <artifactId>hchelpers-parent</artifactId>
         <groupId>org.iglootools.hchelpers</groupId>
-        <version>0.10</version>
+        <version>0.11-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.iglootools.hchelpers</groupId>
     <artifactId>hchelpers-assembly</artifactId>
     <packaging>pom</packaging>
     <name>HttpComponents Helpers Assembly</name>
-    <version>0.10</version>
+    <version>0.11-SNAPSHOT</version>
     <dependencies>
         <dependency>
             <groupId>org.iglootools.hchelpers</groupId>
             <artifactId>hchelpers-java</artifactId>
-            <version>0.10</version>
+            <version>0.11-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.iglootools.hchelpers</groupId>
             <artifactId>hchelpers-spring</artifactId>
-            <version>0.10</version>
+            <version>0.11-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.iglootools.hchelpers</groupId>
             <artifactId>hchelpers-scala</artifactId>
-            <version>0.10</version>
+            <version>0.11-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

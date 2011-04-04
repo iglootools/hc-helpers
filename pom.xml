@@ -6,7 +6,7 @@
 	<packaging>pom</packaging>
 	<name>HttpComponents Helpers Parent</name>
 	<description>HttpComponents helpers</description>
-	<version>0.10</version>
+	<version>0.11-SNAPSHOT</version>
 	<url>http://www.iglootools.org/hc-helpers</url>
 	<inceptionYear>2009</inceptionYear>
 	<prerequisites>
