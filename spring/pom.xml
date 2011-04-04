@@ -3,13 +3,13 @@
     <parent>
         <artifactId>hchelpers-parent</artifactId>
         <groupId>org.iglootools.hchelpers</groupId>
-        <version>0.10-SNAPSHOT</version>
+        <version>0.10</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.iglootools.hchelpers</groupId>
     <artifactId>hchelpers-spring</artifactId>
     <name>HttpComponents Helpers Spring</name>
-    <version>0.10-SNAPSHOT</version>
+    <version>0.10</version>
     <properties>
     </properties>
     <dependencies>
@@ -17,7 +17,7 @@
         <dependency>
             <groupId>org.iglootools.hchelpers</groupId>
             <artifactId>hchelpers-java</artifactId>
-            <version>0.10-SNAPSHOT</version>
+            <version>0.10</version>
         </dependency>
 
         <dependency>
